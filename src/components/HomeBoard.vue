@@ -15,7 +15,6 @@
 
     <ActionPannel @update-history="updateHistory"/>
 
-
     <div class="container">
         <h2>Actions précédentes :</h2>
         <ul>
@@ -31,8 +30,6 @@ import ActionPannel from './ActionPannel.vue'
 const playerHealth = ref(3)
 const enemyHealth = ref(3)
 const logs = ref([])
-
-
 
 function updateHistory(fight) {
     logs.value.push(`Vous : ${fight.playerChoice}, PNJ : ${fight.computerChoice}, Résultat : ${fight.result}`)
