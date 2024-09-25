@@ -1,25 +1,59 @@
 <template>
-    <div class="container">
-        <h1>Pirates fight !</h1>
-        <p>
-        Bienvenue sur le jeu de combat de pirates !
+    <div class="flex flex-col items-center w-screen bg-stone-100 h-screen py-12 gap-8">
+        <div class="flex flex-col justify-center items-center mb-4">
+        <h1 class="font-bold text-6xl text-stroke-3 py-2 bastarda">Fighting Pirates !</h1>
+        <p class="text-center italic text-2xl text-stone-500">
+        Tous les coups sont permis !
         </p>
     </div>
 
-    <div class="container">
-        <h2>Vos points de vie :</h2>
-        <p>{{ playerHealth }}/3</p>
-        <h2>Points de vie de l'ennemi :</h2>
-        <p>{{ enemyHealth }}/3</p>
+    <div class="flex justify-center items-center mb-4">
+        <div class="flex  justify-center items-center mb-4 w-1/2 py-2 px-4">
+            <h2 class="font-semibold py-2 px-4 text-center w-1/2 bastarda">
+                Points de vie
+            </h2>
+            <div class="flex justify-center items-center mb-4 w-1/2 py-2 px-4">
+                <p v-if="playerHealth === 2" class="opacity-35">
+                    💔
+                </p>
+                <p v-else-if="playerHealth === 1" class="opacity-35">
+                    💔💔
+                </p>
+                <p v-for="n in playerHealth" :key="n">
+                    ❤️
+                </p>
+            </div>
+        </div>
+        <div class="flex justify-center items-center mb-4 w-1/2 py-2 px-4">
+            <h2 class="font-semibold py-2 px-4 text-center w-full bastarda">
+                Points de vie ennemis
+            </h2>
+            <div class="flex justify-center items-center mb-4 w-full py-2 px-4">
+                <p v-if="enemyHealth === 2" class="opacity-35">
+                    💔
+                </p>
+                <p v-else-if="enemyHealth === 1" class="opacity-35">
+                    💔💔
+                </p>
+                <p v-for="n in enemyHealth" :key="n">
+                    ❤️
+                </p>
+            </div>
+        </div>
     </div>
 
     <ActionPannel @update-history="updateHistory"/>
 
-    <div class="container">
-        <h2>Actions précédentes :</h2>
+    <div class="flex flex-col justify-center items-center mb-4 bg-stone-200 w-1/2 py-2 px-4 border border-gray-400 rounded shadow">
+        <h2 class="font-semibold bastarda text-2xl py-2 border border-gray-300 px-4 rounded shadow text-center bg-stone-100 w-full">Actions précédentes :</h2>
         <ul class="list-none">
-            <li class="list-none italic" v-for="(log, index) in logs" :key="index">{{ log }}</li>
+            <li class="list-none italic text-gray-800 text-center" v-for="(log, index) in logs" :key="index">
+                <span v-if="log.includes('Egalité')" class="">{{ log }}</span>
+                <span v-else-if="log.includes('gagné')" class="text-green-500">{{ log }}</span>
+                <span v-else class="text-red-500">{{ log }}</span>
+            </li>
         </ul>
+    </div>
     </div>
 </template>
 
@@ -32,7 +66,8 @@ const enemyHealth = ref(3)
 const logs = ref([])
 
 function updateHistory(fight) {
-    logs.value.push(`Vous : ${fight.playerChoice}, PNJ : ${fight.computerChoice}, Résultat : ${fight.result}`)
+    logs.value.push(`Votre action : ${fight.playerChoice}, Action de l'adversaire : ${fight.computerChoice}, Résultat : ${fight.result}`)
+    console.log(logs.value)
     if (fight.result === 'Vous avez perdu !') {
         playerHealth.value--
     } else if (fight.result === 'Vous avez gagné !') {
@@ -44,3 +79,13 @@ function updateHistory(fight) {
     }
 }
 </script>
+
+<style>
+.bastarda {
+    font-family: 'bastarda';
+}
+
+.text-stroke-3 {
+    -webkit-text-stroke:0.02em rgb(130, 66, 66);
+}
+</style>

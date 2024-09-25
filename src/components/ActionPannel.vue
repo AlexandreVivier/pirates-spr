@@ -1,9 +1,13 @@
 <template>
-    <div class="container">
-        <h2>Choisissez votre action :</h2>
-        <ActionButton @getChoice='rollFight' action="attaquer" />
-        <ActionButton @getChoice='rollFight' action="parer" />
-        <ActionButton @getChoice='rollFight' action="provoquer" />
+    <div class="flex flex-col justify-center items-center mb-4 w-1/2 p-6 rounded shadow bg-white border border-gray-300">
+        <div>
+            <h2 class="font-semibold py-2 px-4 text-center w-full bastarda text-2xl">Choisissez votre action :</h2>
+        </div>
+        <div class="flex w-full gap-6 justify-center">
+            <ActionButton @getChoice='rollFight' action="attaquer" />
+            <ActionButton @getChoice='rollFight' action="parer" />
+            <ActionButton @getChoice='rollFight' action="moquer" />
+        </div>
     </div>
 </template>
 
@@ -13,7 +17,7 @@ import { defineEmits } from 'vue'
 
 const emit = defineEmits(['update-history'])
 
-const choices = ['attaquer', 'parer', 'provoquer']
+const choices = ['attaquer', 'parer', 'moquer']
 
 function rollFight(playerChoice) {
     const computerChoice = choices[Math.floor(Math.random() * choices.length)]
@@ -22,16 +26,16 @@ function rollFight(playerChoice) {
     if (playerChoice === computerChoice) {
         result = 'Egalité'
     } else if (
-        (playerChoice === 'attaquer' && computerChoice === 'provoquer') ||
+        (playerChoice === 'attaquer' && computerChoice === 'moquer') ||
         (playerChoice === 'parer' && computerChoice === 'attaquer') ||
-        (playerChoice === 'provoquer' && computerChoice === 'parer')
+        (playerChoice === 'moquer' && computerChoice === 'parer')
     ) {
         result = 'Vous avez gagné !'
     } else {
         result = 'Vous avez perdu !'
     }
 
-    console.log('vous :', playerChoice, 'PNJ : ', computerChoice, result)
+    // console.log('vous :', playerChoice, 'PNJ : ', computerChoice, result)
     
     emit('update-history', { playerChoice, computerChoice, result })
 }
