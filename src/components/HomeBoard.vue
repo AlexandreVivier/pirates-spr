@@ -17,8 +17,8 @@
 
     <div class="container">
         <h2>Actions précédentes :</h2>
-        <ul>
-            <li v-for="(log, index) in logs" :key="index">{{ log }}</li>
+        <ul class="list-none">
+            <li class="list-none italic" v-for="(log, index) in logs" :key="index">{{ log }}</li>
         </ul>
     </div>
 </template>
