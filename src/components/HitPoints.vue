@@ -4,7 +4,7 @@
                 {{ label }}
             </h2>
             <div class="flex justify-center items-center mb-4 w-1/2 py-2 px-4">
-                <p v-if="healt === 2" class="opacity-35">
+                <p v-if="health === 2" class="opacity-35">
                     💔
                 </p>
                 <p v-else-if="health === 1" class="opacity-35">

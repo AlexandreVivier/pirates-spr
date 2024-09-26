@@ -1,29 +1,25 @@
 <template>
     <div class="flex flex-col items-center w-screen bg-stone-100 h-screen py-12 gap-8">
-        <div class="flex flex-col justify-center items-center mb-4">
-        <h1 class="font-bold text-6xl text-stroke-3 py-2 bastarda">Fighting Pirates !</h1>
-        <p class="text-center italic text-2xl text-stone-500">
-        Tous les coups sont permis !
-        </p>
-    </div>
+        <TitleCard/>
 
-    <div class="flex justify-center items-center mb-4">
-        <HitPoints label="Points de vie" :health="playerHealth" />
-        <HitPoints label="Points de vie ennemis" :health="enemyHealth" />
-    </div>
+        <div class="flex justify-center items-center mb-4">
+            <HitPoints label="Points de vie" :health="playerHealth" />
+            <HitPoints label="Points de vie ennemis" :health="enemyHealth" />
+        </div>
 
-    <ActionPannel @update-history="updateHistory"/>
+        <ActionPannel @update-history="updateHistory"/>
 
-    <div class="flex flex-col justify-center items-center mb-4 bg-stone-200 w-1/2 py-2 px-4 border border-gray-400 rounded shadow">
-        <h2 class="font-semibold bastarda text-2xl py-2 border border-gray-300 px-4 rounded shadow text-center bg-stone-100 w-full">Actions précédentes :</h2>
-        <ul class="list-none">
-            <li class="list-none italic text-gray-800 text-center" v-for="(log, index) in logs" :key="index">
-                <span v-if="log.includes('Egalité')" class="">{{ log }}</span>
-                <span v-else-if="log.includes('gagné')" class="text-green-500">{{ log }}</span>
-                <span v-else class="text-red-500">{{ log }}</span>
-            </li>
-        </ul>
-    </div>
+        <div class="flex flex-col justify-center items-center mb-4 bg-stone-200 w-1/2 py-2 px-4 border border-gray-400 rounded shadow">
+            <h2 class="font-semibold bastarda text-2xl py-2 border border-gray-300 px-4 rounded shadow text-center bg-stone-100 w-full">Actions précédentes :</h2>
+            <ul class="list-none">
+                <li class="list-none italic text-gray-800 text-center" v-for="(log, index) in logs" :key="index">
+                    <span v-if="log.includes('Egalité')" class="">{{ log }}</span>
+                    <span v-else-if="log.includes('gagné')" class="text-green-500">{{ log }}</span>
+                    <span v-else class="text-red-500">{{ log }}</span>
+                </li>
+            </ul>
+        </div>
+        
     </div>
 </template>
 
@@ -31,6 +27,7 @@
 import { ref } from 'vue'
 import ActionPannel from './ActionPannel.vue'
 import HitPoints from './HitPoints.vue'
+import TitleCard from './TitleCard.vue';
 
 const playerHealth = ref(3)
 const enemyHealth = ref(3)
