@@ -16,7 +16,6 @@ defineProps({
 function renderImage(action) {
 switch (action) {
     case 'attaquer':
-        // Return the path to the image of the attack in the assets/images folder
         return 'https://www.pirates-caraibes.com/media/ihmJeu/KillTypeAttaque.gif'
     case 'parer':
         return 'https://www.pirates-caraibes.com/media/ihmJeu/KillTypeDefense.gif'
