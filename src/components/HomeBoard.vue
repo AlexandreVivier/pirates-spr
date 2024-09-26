@@ -8,38 +8,8 @@
     </div>
 
     <div class="flex justify-center items-center mb-4">
-        <div class="flex  justify-center items-center mb-4 w-1/2 py-2 px-4">
-            <h2 class="font-semibold py-2 px-4 text-center w-1/2 bastarda">
-                Points de vie
-            </h2>
-            <div class="flex justify-center items-center mb-4 w-1/2 py-2 px-4">
-                <p v-if="playerHealth === 2" class="opacity-35">
-                    💔
-                </p>
-                <p v-else-if="playerHealth === 1" class="opacity-35">
-                    💔💔
-                </p>
-                <p v-for="n in playerHealth" :key="n">
-                    ❤️
-                </p>
-            </div>
-        </div>
-        <div class="flex justify-center items-center mb-4 w-1/2 py-2 px-4">
-            <h2 class="font-semibold py-2 px-4 text-center w-full bastarda">
-                Points de vie ennemis
-            </h2>
-            <div class="flex justify-center items-center mb-4 w-full py-2 px-4">
-                <p v-if="enemyHealth === 2" class="opacity-35">
-                    💔
-                </p>
-                <p v-else-if="enemyHealth === 1" class="opacity-35">
-                    💔💔
-                </p>
-                <p v-for="n in enemyHealth" :key="n">
-                    ❤️
-                </p>
-            </div>
-        </div>
+        <HitPoints label="Points de vie" :health="playerHealth" />
+        <HitPoints label="Points de vie ennemis" :health="enemyHealth" />
     </div>
 
     <ActionPannel @update-history="updateHistory"/>
@@ -60,6 +30,7 @@
 <script lang="js" setup>
 import { ref } from 'vue'
 import ActionPannel from './ActionPannel.vue'
+import HitPoints from './HitPoints.vue'
 
 const playerHealth = ref(3)
 const enemyHealth = ref(3)
