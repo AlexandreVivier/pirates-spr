@@ -1,14 +1,14 @@
 <template>
-  <HomeBoard />
+  <FightScreen />
 </template>
 
 <script>
-import HomeBoard from './components/HomeBoard.vue'
+import FightScreen from './components/FightScreen.vue'
 
 export default {
   name: 'App',
   components: {
-    HomeBoard
+    FightScreen
   }
 }
 </script>
