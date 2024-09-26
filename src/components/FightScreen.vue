@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col items-center w-screen bg-stone-100 h-screen py-12 gap-8">
-        <TitleCard/>
+        <TitleCard v-if="gameover === true"/>
 
         <div class="flex justify-center items-center mb-2">
             <HitPoints label="Points de vie" :health="playerHealth" />
@@ -13,6 +13,8 @@
         </div>
 
         <div v-if="gameover === false" class="flex flex-col w-full justify-center items-center mb-4">
+
+            <DuelingImages  :playerChoice="playerChoice" :ennemyChoice="computerChoice"/>
             <ActionPannel @update-history="updateHistory"/>
         </div>
 
@@ -27,16 +29,20 @@ import HitPoints from './HitPoints.vue'
 import TitleCard from './TitleCard.vue'
 import HistoryLog from './HistoryLog.vue'
 import CommonButton from './CommonButton.vue'
+import DuelingImages from './DuelingImages.vue'
 
 const playerHealth = ref(3)
 const enemyHealth = ref(3)
 const logs = ref([])
 const gameover = ref(false)
 const endGameMessage = ref('')
+const playerChoice = ref('')
+const computerChoice = ref('')
 
 function updateHistory(fight) {
     logs.value.push(`Votre action : ${fight.playerChoice}, Action de l'adversaire : ${fight.computerChoice}, Résultat : ${fight.result}`)
-    console.log(logs.value)
+    playerChoice.value = fight.playerChoice
+    computerChoice.value = fight.computerChoice
     if (fight.result === 'Vous avez perdu !') {
         playerHealth.value--
     } else if (fight.result === 'Vous avez gagné !') {
@@ -47,6 +53,7 @@ function updateHistory(fight) {
         endGameMessage.value = playerHealth.value === 0 ? 'Vous avez perdu la partie !' : 'Vous avez gagné la partie !'
     }
 }
+
 </script>
 
 <style>
