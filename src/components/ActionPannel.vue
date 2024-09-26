@@ -4,9 +4,9 @@
             <h2 class="font-semibold py-2 px-4 text-center w-full bastarda text-2xl">Choisissez votre action :</h2>
         </div>
         <div class="flex w-full gap-6 justify-center">
-            <ActionButton @getChoice='rollFight' action="attaquer" />
-            <ActionButton @getChoice='rollFight' action="parer" />
-            <ActionButton @getChoice='rollFight' action="moquer" />
+            <div class="w-full" v-for="(choice, index) in choices" :key="index">
+            <ActionButton @getChoice='rollFight' :action="choice" />
+            </div>
         </div>
     </div>
 </template>
