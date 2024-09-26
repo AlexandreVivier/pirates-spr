@@ -5,7 +5,7 @@
         </div>
         <div class="flex w-full gap-6 justify-center">
             <div class="w-full" v-for="(choice, index) in choices" :key="index">
-            <ActionButton @getChoice='rollFight' :action="choice" />
+                <ActionButton @getChoice='rollFight' :action="choice" />
             </div>
         </div>
     </div>
@@ -33,10 +33,7 @@ function rollFight(playerChoice) {
         result = 'Vous avez gagné !'
     } else {
         result = 'Vous avez perdu !'
-    }
-
-    // console.log('vous :', playerChoice, 'PNJ : ', computerChoice, result)
-    
+    }    
     emit('update-history', { playerChoice, computerChoice, result })
 }
 </script>

@@ -10,6 +10,9 @@
                 <p v-else-if="health === 1" class="opacity-35">
                     💔💔
                 </p>
+                <p v-else-if="health === 0" class="opacity-35">
+                    💔💔💔
+                </p>
                 <p v-for="n in health" :key="n">
                     ❤️
                 </p>

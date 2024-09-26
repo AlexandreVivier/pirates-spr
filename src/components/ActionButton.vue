@@ -1,7 +1,8 @@
 <template>
-    <button class="bg-stone-700 text-xl uppercase font-serif hover:bg-stone-900 w-full text-white text-stroke-3 font-semibold py-6 px-4 border border-gray-400 rounded shadow" 
+    <button class="flex flex-col items-center bg-stone-200 hover:bg-stone-300 w-full text-stone-800 text-xl uppercase font-serif text-stroke-3 font-semibold pt-6 px-4 border border-gray-400 rounded shadow" 
     @click="$emit('getChoice', action)">
         {{ action }} !
+         <img :src="renderImage(action)" alt="emoji" class="inline-block  h-12" />
     </button>
 </template>
 
@@ -11,6 +12,20 @@ import { defineProps, defineEmits } from 'vue'
 defineProps({
     action: String
 })
+
+function renderImage(action) {
+switch (action) {
+    case 'attaquer':
+        // Return the path to the image of the attack in the assets/images folder
+        return 'https://www.pirates-caraibes.com/media/ihmJeu/KillTypeAttaque.gif'
+    case 'parer':
+        return 'https://www.pirates-caraibes.com/media/ihmJeu/KillTypeDefense.gif'
+    case 'moquer':
+        return 'https://www.pirates-caraibes.com/js/tinymce/plugins/smileys/img/mortderire.gif'
+    default:
+        return 'https://www.pirates-caraibes.com/js/tinymce/plugins/smileys/img/tronchedecake.gif'
+    }
+}
 
 defineEmits(['getChoice'])
 </script>
