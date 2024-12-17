@@ -16,11 +16,11 @@ defineProps({
 function renderImage(action) {
 switch (action) {
     case 'attaquer':
-        return 'https://www.pirates-caraibes.com/media/ihmJeu/KillTypeAttaque.gif'
+        return '/images/icons/attack.gif'
     case 'parer':
-        return 'https://www.pirates-caraibes.com/media/ihmJeu/KillTypeDefense.gif'
+        return '/images/icons/block.gif'
     case 'moquer':
-        return 'https://www.pirates-caraibes.com/js/tinymce/plugins/smileys/img/mortderire.gif'
+        return '/images/icons/mock.gif'
     default:
         return 'https://www.pirates-caraibes.com/js/tinymce/plugins/smileys/img/tronchedecake.gif'
     }

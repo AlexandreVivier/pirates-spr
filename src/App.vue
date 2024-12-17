@@ -4,7 +4,6 @@
 
 <script>
 import FightScreen from './components/FightScreen.vue'
-
 export default {
   name: 'App',
   components: {

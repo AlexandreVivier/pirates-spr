@@ -53,7 +53,6 @@ function updateHistory(fight) {
         endGameMessage.value = playerHealth.value === 0 ? 'Vous avez perdu la partie !' : 'Vous avez gagné la partie !'
     }
 }
-
 </script>
 
 <style>
