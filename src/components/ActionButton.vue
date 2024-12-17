@@ -22,7 +22,7 @@ switch (action) {
     case 'moquer':
         return '/images/icons/mock.gif'
     default:
-        return 'https://www.pirates-caraibes.com/js/tinymce/plugins/smileys/img/tronchedecake.gif'
+        return '/images/icons/tronchedecake.gif'
     }
 }
 
