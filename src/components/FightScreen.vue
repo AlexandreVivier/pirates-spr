@@ -14,7 +14,8 @@
 
         <div v-if="gameover === false" class="flex flex-col w-full justify-center items-center mb-4">
 
-            <DuelingImages  :playerChoice="playerChoice" :ennemyChoice="computerChoice"/>
+            <DuelingImages :playerSkin="playerSkins[playerChoice]" 
+            :ennemySkin="enemySkins[computerChoice]"/>
             <ActionPannel @update-history="updateHistory"/>
         </div>
 
@@ -23,7 +24,8 @@
 </template>
 
 <script lang="js" setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
 import ActionPannel from './ActionPannel.vue'
 import HitPoints from './HitPoints.vue'
 import TitleCard from './TitleCard.vue'
@@ -31,13 +33,30 @@ import HistoryLog from './HistoryLog.vue'
 import CommonButton from './CommonButton.vue'
 import DuelingImages from './DuelingImages.vue'
 
+const route = useRoute()
+
+const playerName = route.query.playerName
+
 const playerHealth = ref(3)
 const enemyHealth = ref(3)
 const logs = ref([])
 const gameover = ref(false)
 const endGameMessage = ref('')
-const playerChoice = ref('')
-const computerChoice = ref('')
+
+const playerSkins = computed(() => {
+  return playerName === 'Alexandre'
+    ? { attaquer: '/images/sprites/attackP.gif', parer: '/images/sprites/blockP.gif', moquer: '/images/sprites/mockP.gif', idle: '/images/sprites/iddleP.gif' }
+    : { attaquer: '/images/sprites/attackE.gif', parer: '/images/sprites/blockE.gif', moquer: '/images/sprites/mockE.gif', idle: '/images/sprites/iddleE.gif' }
+})
+
+const enemySkins = computed(() => {
+  return playerName === 'Alexandre'
+    ? { attaquer: '/images/sprites/attackE.gif', parer: '/images/sprites/blockE.gif', moquer: '/images/sprites/mockE.gif', idle: '/images/sprites/iddleE.gif' }
+    : { attaquer: '/images/sprites/attackP.gif', parer: '/images/sprites/blockP.gif', moquer: '/images/sprites/mockP.gif', idle: '/images/sprites/iddleP.gif' }
+})
+
+const playerChoice = ref('idle')
+const computerChoice = ref('idle')
 
 function updateHistory(fight) {
     logs.value.push(`Votre action : ${fight.playerChoice}, Action de l'adversaire : ${fight.computerChoice}, Résultat : ${fight.result}`)

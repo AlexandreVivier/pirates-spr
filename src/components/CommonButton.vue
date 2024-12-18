@@ -13,11 +13,10 @@ import { useRouter } from 'vue-router'
 
 // Définir les props
 const props = defineProps({
-    action: String, // Le chemin de la route cible
+    action: String,
     label: String
 })
 
-// Utiliser le router de Vue Router
 const router = useRouter()
 
 // Fonction pour naviguer
