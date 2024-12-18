@@ -10,7 +10,7 @@
         @click="playerName = 'François'"/>
     </div>
     <p class="text-center italic text-2xl text-stone-500 pb-6">Je choisis "{{ playerName }}" !</p>
-    <CommonButton label="Commencer à jouer !"/>
+    <CommonButton label="Commencer à jouer !" action="/fight"/>
     </div>
 </div>
 </template>

@@ -1,18 +1,11 @@
 <template>
-  <FightScreen />
-   <!-- <SelectionScreen /> -->
+  <div id="app">
+    <router-view></router-view>
+  </div>
 </template>
 
-<script>
-import FightScreen from './components/FightScreen.vue'
-// import SelectionScreen from './components/SelectionScreen.vue';
-export default {
-  name: 'App',
-  components: {
-    FightScreen,
-    // SelectionScreen
-  }
-}
+<script setup>
+// Aucun script nécessaire ici dans cet exemple minimal
 </script>
 
 <style>

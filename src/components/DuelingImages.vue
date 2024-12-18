@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-row w-1/2 justify-center">
-        <img :src="getPlayerSkin(playerChoice)" alt="player picture" class="inline-block absolute z-10 left-1/3 " />
-        <img :src="getEnnemySkin(ennemyChoice)" alt="ennemy picture" class="inline-block relative" />
+        <img :src="getPlayerSkin(playerChoice)" alt="player picture" class="inline-block absolute" />
+        <img :src="getEnnemySkin(ennemyChoice)" alt="ennemy picture" class="inline-block relative transform -scale-x-100" />
     </div>
 </template>
 

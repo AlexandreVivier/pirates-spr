@@ -9,7 +9,7 @@
 
         <div v-show="gameover === true" class="flex flex-col justify-center items-center mb-4">
             <p class="text-center italic text-2xl text-stone-500 pb-6">{{ endGameMessage }}</p>
-            <CommonButton label="Rejouer ?"/>
+            <CommonButton label="Rejouer ?" action="/selection"/>
         </div>
 
         <div v-if="gameover === false" class="flex flex-col w-full justify-center items-center mb-4">
