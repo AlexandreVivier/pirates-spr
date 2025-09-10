@@ -1,6 +1,6 @@
 <template>
     <button
-        class="bg-white hover:bg-stone-200 text-stone-800 bastarda font-semibold text-lg py-2 px-4 border border-stone-400 rounded shadow"
+        class="bg-white dark:bg-stone-900 dark:hover:bg-stone-800 hover:bg-stone-200 text-stone-800 dark:text-stone-100  bastarda font-semibold text-lg py-2 px-4 border border-stone-400 rounded shadow"
         @click="navigate"
     >
         {{ label }}

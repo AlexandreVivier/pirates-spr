@@ -1,10 +1,10 @@
 <template>
-    <div class="flex flex-col items-center w-screen bg-stone-100 h-screen py-12 gap-8">
+    <div class="flex flex-col items-center w-screen bg-stone-100 dark:bg-stone-900 h-screen py-12 gap-8">
         <TitleCard v-if="gameover === true"/>
 
-        <div class="flex justify-center items-center mb-2">
+        <div class="flex justify-around items-center w-screen mb-2">
             <HitPoints label="Points de vie" :health="playerHealth" />
-            <HitPoints label="Points de vie ennemis" :health="enemyHealth" />
+            <HitPoints label="Points de vie ennemis" :health="enemyHealth" class="flex-row-reverse"/>
         </div>
 
         <div v-show="gameover === true" class="flex flex-col justify-center items-center mb-4">

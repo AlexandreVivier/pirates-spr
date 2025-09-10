@@ -1,9 +1,9 @@
 <template>
-<div class="flex  justify-center items-center mb-4 w-1/2 py-2 px-4">
-            <h2 class="font-semibold py-2 px-4 text-center w-1/2 bastarda">
+<div class="flex dark:text-stone-100 justify-center items-center mb-4 py-2 px-4">
+            <h2 class="font-semibold py-2 px-4 text-center bastarda">
                 {{ label }}
             </h2>
-            <div class="flex justify-center items-center mb-4 w-1/2 py-2 px-4">
+            <div class="flex justify-center items-center mb-4 py-2 px-4">
                 <p v-if="health === 2" class="opacity-35">
                     💔
                 </p>

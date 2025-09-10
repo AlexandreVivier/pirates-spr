@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col justify-center items-center mb-4 w-1/2 p-6 rounded shadow bg-white border border-gray-300">
+    <div class="flex flex-col justify-center items-center mb-4 w-1/2 p-6 dark:text-stone-100">
         <div>
             <h2 class="font-semibold py-2 px-4 text-center w-full bastarda text-2xl">Choisissez votre action :</h2>
         </div>
