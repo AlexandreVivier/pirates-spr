@@ -5,9 +5,13 @@
         <p class="text-center italic text-2xl text-stone-500 pb-6">Sélectionnez votre pirate :</p>
         <div class="flex justify-around items-center w-50 red-500 mb-2">
             <img src="/images/portraits/portraitP.gif" alt="player picture" class="inline-block border-double border-8 filter grayscale hover:filter-none border-stone-500 hover:border-red-100 bg-stone-400 hover:bg-stone-300 hover:cursor-pointer transition ease-in-out delay-150"
-            @click="playerName = 'Alexandre'"/>
-            <img src="/images/portraits/portraitE.gif" alt="ennemy picture" class="inline-block border-double border-8 filter grayscale hover:filter-none border-stone-500 hover:border-red-100 bg-stone-400 hover:bg-stone-300 hover:cursor-pointer transition ease-in-out delay-150" 
-            @click="playerName = 'François'"/>
+            @click="playerName = 'Alexandre'"
+            :class="{ 'filter-none': playerName === 'Alexandre' }"
+            />
+            <img src="/images/portraits/portraitE.gif" alt="ennemy picture" class="inline-block border-double border-8 filter grayscale hover:filter-none border-stone-500 hover:border-red-100 bg-stone-400 hover:bg-stone-300 hover:cursor-pointer transition ease-in-out delay-150"
+            @click="playerName = 'François'"
+            :class="{ 'filter-none': playerName === 'François' }"
+            />
         </div>
         <div v-if="playerName!=''">
             <p class="text-center italic text-2xl text-stone-500 pb-6">Je choisis {{ playerName }} !</p>
