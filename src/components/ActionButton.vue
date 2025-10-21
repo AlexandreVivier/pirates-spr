@@ -1,8 +1,8 @@
 <template>
-    <button class="flex flex-col items-center bg-stone-200 hover:bg-stone-300 dark:bg-stone-800 dark:hover:bg-stone-700 dark:text-stone-100 w-full text-stone-800 text-xl uppercase font-serif text-stroke-3 font-semibold pt-6 px-4 border border-gray-400 rounded shadow" 
+    <button class="flex flex-col items-center bg-stone-200 hover:bg-stone-300 dark:bg-stone-800 dark:hover:bg-stone-700 dark:text-stone-100 w-full text-stone-800 text-lg md:text-xl uppercase font-serif text-stroke-3 font-semibold py-2 md:pt-6 md:px-4 border border-gray-400 rounded shadow" 
     @click="$emit('getChoice', action)">
-        {{ action }} !
-         <img :src="renderImage(action)" alt="emoji" class="inline-block  h-12" />
+        {{ action }}
+         <img :src="renderImage(action)" alt="emoji" class="hidden md:inline-block md:h-12" />
     </button>
 </template>
 

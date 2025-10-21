@@ -1,8 +1,9 @@
 <template>
-    <div class="flex flex-col items-center w-screen bg-stone-100 dark:bg-stone-900 h-screen py-12 gap-8">
+    <div class="bg-stone-100 dark:bg-stone-900 h-full">
+    <div class="flex flex-col items-center w-full bg-stone-100 dark:bg-stone-900 h-screen">
         <TitleCard v-if="gameover === true"/>
 
-        <div class="flex justify-around items-center w-screen mb-2">
+        <div class="flex justify-around items-center w-full">
             <HitPoints label="Points de vie" :health="playerHealth" />
             <HitPoints label="Points de vie ennemis" :health="enemyHealth" class="flex-row-reverse"/>
         </div>
@@ -12,14 +13,17 @@
             <CommonButton label="Rejouer ?" action="/selection"/>
         </div>
 
-        <div v-if="gameover === false" class="flex flex-col w-full justify-center items-center mb-4">
+        <div v-if="gameover === false" class="flex flex-col w-full min-h-screen justify-center items-center">
 
-            <DuelingImages :playerSkin="playerSkins[playerChoice]" 
+            <!-- <DuelingImages :playerSkin="playerSkins[playerChoice]" 
+            :ennemySkin="enemySkins[computerChoice]"/> -->
+            <DuelingImages2 :playerSkin="playerSkins[playerChoice]" 
             :ennemySkin="enemySkins[computerChoice]"/>
             <ActionPannel @update-history="updateHistory"/>
         </div>
 
         <HistoryLog :logs="logs"/>
+    </div>
     </div>
 </template>
 
@@ -31,7 +35,8 @@ import HitPoints from './HitPoints.vue'
 import TitleCard from './TitleCard.vue'
 import HistoryLog from './HistoryLog.vue'
 import CommonButton from './CommonButton.vue'
-import DuelingImages from './DuelingImages.vue'
+// import DuelingImages from './DuelingImages.vue'
+import DuelingImages2 from './DuelingImages2.vue'
 
 const route = useRoute()
 

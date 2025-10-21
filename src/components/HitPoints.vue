@@ -1,5 +1,5 @@
 <template>
-<div class="flex dark:text-stone-100 justify-center items-center mb-4 py-2 px-4">
+<div class="flex flex-col lg:flex-row dark:text-stone-100 justify-center items-center mb-4 py-2 px-4">
             <h2 class="font-semibold py-2 px-4 text-center bastarda">
                 {{ label }}
             </h2>

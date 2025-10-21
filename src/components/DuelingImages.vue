@@ -40,8 +40,8 @@ function getEnnemySkin(ennemyChoice) {
 <template>
     <div class="flex flex-row justify-center items-center w-1/2 bg-gradient-to-r from-stone-900/80 via-stone-200 to-stone-900/80 py-1">
     <div class="flex flex-row bg-gradient-to-r from-stone-900/90 via-stone-600 to-stone-900/90 w-full py-6 justify-center">
-        <img :src="playerSkin" alt="player picture" class="inline-block absolute drop-shadow-xl" />
-        <img :src="ennemySkin" alt="ennemy picture" class="inline-block relative drop-shadow-xl transform -scale-x-100" />
+        <img :src="playerSkin" alt="player picture" class="inline-block absolute drop-shadow-xl transform scale-x-50 scale-y-50" />
+        <img :src="ennemySkin" alt="ennemy picture" class="inline-block relative drop-shadow-xl transform -scale-x-50 scale-y-50" />
     </div>
     </div>
 </template>
