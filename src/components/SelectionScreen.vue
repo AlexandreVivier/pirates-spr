@@ -4,30 +4,10 @@
     <div class="flex flex-col justify-center items-center w-full mb-4">
         <p class="text-center italic text-2xl text-stone-500 pb-6">Sélectionnez votre pirate :</p>
         <div class="flex justify-center items-center w-full md:w-1/2 mb-2">
-            <div class="inline-block">
-                <img src="/images/portraits/portraitP.gif" alt="Van Nistelrouye" class="inline-block border-double border-8 filter grayscale hover:filter-none border-stone-500 hover:border-amber-700 bg-stone-400 hover:bg-slate-600 hover:cursor-pointer transition ease-in-out delay-150"
-                @click="playerName = 'Van Nistelrouye'"
-                :class="{ 'filter-none border-amber-600 bg-slate-500 transform -scale-x-100': playerName === 'Van Nistelrouye' }"
-                />
-            </div>
-            <div class="inline-block">
-                <img src="/images/portraits/portraitE.gif" alt="François de Surcoup" class="inline-block border-double border-8 filter grayscale hover:filter-none border-stone-500 hover:border-purple-900 bg-stone-400 hover:bg-slate-600 hover:cursor-pointer transition ease-in-out delay-150"
-                @click="playerName = 'François de Surcoup'"
-                :class="{ 'filter-none border-purple-500 bg-slate-500 transform -scale-x-100': playerName === 'François de Surcoup' }"
-                />
-            </div>
-            <div class="inline-block">
-                <img src="/images/portraits/portraitS.gif" alt="Jack Marrow Portrait" class="inline-block border-double border-8 filter grayscale hover:filter-none border-stone-500 hover:border-red-700 bg-stone-400 hover:bg-slate-600 hover:cursor-pointer transition ease-in-out delay-150"
-                @click="playerName = 'Jack Marrow'"
-                :class="{ 'filter-none border-red-500 bg-slate-500 transform -scale-x-100': playerName === 'Jack Marrow' }"
-                />
-            </div>
-            <div class="inline-block">
-                <img src="/images/portraits/portraitJ.gif" alt="Jungle Jane" class="inline-block border-double border-8 filter grayscale hover:filter-none border-stone-500 hover:border-green-600 bg-stone-400 hover:bg-slate-600 hover:cursor-pointer transition ease-in-out delay-150"
-                @click="playerName = 'Jungle Jane'"
-                :class="{ 'filter-none border-green-500 bg-slate-500 transform -scale-x-100': playerName === 'Jungle Jane' }"
-                />
-            </div>
+            <PortraitSelect :player="vanNistelrouye" @click="playerName = vanNistelrouye.name" :class="{ 'filter-none border-amber-600 bg-slate-500 transform -scale-x-100': playerName === 'Van Nistelrouye' }"/>
+            <PortraitSelect :player="francoisDeSurcoup" @click="playerName = francoisDeSurcoup.name" :class="{ 'filter-none border-purple-500 bg-slate-500 transform -scale-x-100': playerName === 'François de Surcoup' }"/>
+            <PortraitSelect :player="jungleJane" @click="playerName = jungleJane.name" :class="{ 'filter-none border-green-500 bg-slate-500 transform -scale-x-100': playerName === 'Jungle Jane' }"/>
+            <PortraitSelect :player="jackMarrow" @click="playerName = jackMarrow.name" :class="{ 'filter-none border-red-500 bg-slate-500 transform -scale-x-100': playerName === 'Jack Marrow' }"/>
         </div>
         <div v-if="playerName!=''">
             <p class="text-center italic text-2xl text-stone-500 pb-6">Je choisis {{ playerName }} !</p>
@@ -41,7 +21,29 @@
 import { ref } from 'vue'
 import TitleCard from './TitleCard.vue'
 import CommonButton from './CommonButton.vue'
+import PortraitSelect from './PortraitSelect.vue'
 const playerName = ref('') 
+
+const jackMarrow = {
+    name: 'Jack Marrow',
+    portrait: '/images/portraits/portraitS.gif',
+    alt: 'Jack Marrow Portrait'
+}
+const vanNistelrouye = {
+    name: 'Van Nistelrouye',
+    portrait: '/images/portraits/portraitP.gif',
+    alt: 'Van Nistelrouye Portrait'
+}
+const francoisDeSurcoup = {
+    name: 'François de Surcoup',
+    portrait: '/images/portraits/portraitE.gif',
+    alt: 'François de Surcoup Portrait'
+}
+const jungleJane = {
+    name: 'Jungle Jane',
+    portrait: '/images/portraits/portraitJ.gif',
+    alt: 'Jungle Jane Portrait'
+}
 </script>
 
 
