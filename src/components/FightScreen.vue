@@ -14,9 +14,6 @@
         </div>
 
         <div v-if="gameover === false" class="flex flex-col w-full min-h-screen justify-center items-center">
-
-            <!-- <DuelingImages :playerSkin="playerSkins[playerChoice]" 
-            :ennemySkin="enemySkins[computerChoice]"/> -->
             <DuelingImages2 :playerSkin="playerSkins[playerChoice]" 
             :ennemySkin="enemySkins[computerChoice]"/>
             <ActionPannel @update-history="updateHistory"/>
@@ -35,12 +32,14 @@ import HitPoints from './HitPoints.vue'
 import TitleCard from './TitleCard.vue'
 import HistoryLog from './HistoryLog.vue'
 import CommonButton from './CommonButton.vue'
-// import DuelingImages from './DuelingImages.vue'
 import DuelingImages2 from './DuelingImages2.vue'
 
 const route = useRoute()
 
-const playerName = route.query.playerName
+const playerName = route.query.playerName || 'Van Nistelrouye'
+const allNames = ['Van Nistelrouye', 'François de Surcoup', 'Jack Marrow', 'Jungle Jane']
+const ennemyName = allNames.filter(name => name !== playerName)[Math.floor(Math.random() * (allNames.length - 1))]
+// console.log('Ennemy selected:', ennemyName, 'against player:', playerName)
 
 const playerHealth = ref(3)
 const enemyHealth = ref(3)
@@ -49,15 +48,33 @@ const gameover = ref(false)
 const endGameMessage = ref('')
 
 const playerSkins = computed(() => {
-  return playerName === 'Alexandre'
-    ? { attaquer: '/images/sprites/attackP.gif', parer: '/images/sprites/blockP.gif', moquer: '/images/sprites/mockP.gif', idle: '/images/sprites/iddleP.gif' }
-    : { attaquer: '/images/sprites/attackE.gif', parer: '/images/sprites/blockE.gif', moquer: '/images/sprites/mockE.gif', idle: '/images/sprites/iddleE.gif' }
+switch (playerName) {
+    case 'Van Nistelrouye':
+        return { attaquer: '/images/sprites/attackP.gif', parer: '/images/sprites/blockP.gif', moquer: '/images/sprites/mockP.gif', idle: '/images/sprites/iddleP.gif' }
+    case 'François de Surcoup':
+        return { attaquer: '/images/sprites/attackE.gif', parer: '/images/sprites/blockE.gif', moquer: '/images/sprites/mockE.gif', idle: '/images/sprites/iddleE.gif' }
+    case 'Jack Marrow':
+        return { attaquer: '/images/sprites/attackS.gif', parer: '/images/sprites/blockS.gif', moquer: '/images/sprites/mockS.gif', idle: '/images/sprites/iddleS.gif' }
+    case 'Jungle Jane':
+        return { attaquer: '/images/sprites/attackJ.gif', parer: '/images/sprites/blockJ.gif', moquer: '/images/sprites/mockJ.gif', idle: '/images/sprites/iddleJ.gif' }
+    default:
+        return { attaquer: '/images/sprites/attackP.gif', parer: '/images/sprites/blockP.gif', moquer: '/images/sprites/mockP.gif', idle: '/images/sprites/iddleP.gif' }
+}
 })
 
 const enemySkins = computed(() => {
-  return playerName === 'Alexandre'
-    ? { attaquer: '/images/sprites/attackE.gif', parer: '/images/sprites/blockE.gif', moquer: '/images/sprites/mockE.gif', idle: '/images/sprites/iddleE.gif' }
-    : { attaquer: '/images/sprites/attackP.gif', parer: '/images/sprites/blockP.gif', moquer: '/images/sprites/mockP.gif', idle: '/images/sprites/iddleP.gif' }
+switch (ennemyName) {
+    case 'Van Nistelrouye':
+        return { attaquer: '/images/sprites/attackP.gif', parer: '/images/sprites/blockP.gif', moquer: '/images/sprites/mockP.gif', idle: '/images/sprites/iddleP.gif' }
+    case 'François de Surcoup':
+        return { attaquer: '/images/sprites/attackE.gif', parer: '/images/sprites/blockE.gif', moquer: '/images/sprites/mockE.gif', idle: '/images/sprites/iddleE.gif' }
+    case 'Jack Marrow':
+        return { attaquer: '/images/sprites/attackS.gif', parer: '/images/sprites/blockS.gif', moquer: '/images/sprites/mockS.gif', idle: '/images/sprites/iddleS.gif' }
+    case 'Jungle Jane':
+        return { attaquer: '/images/sprites/attackJ.gif', parer: '/images/sprites/blockJ.gif', moquer: '/images/sprites/mockJ.gif', idle: '/images/sprites/iddleJ.gif' }
+    default:
+        return { attaquer: '/images/sprites/attackE.gif', parer: '/images/sprites/blockE.gif', moquer: '/images/sprites/mockE.gif', idle: '/images/sprites/iddleE.gif' }
+}
 })
 
 const playerChoice = ref('idle')
