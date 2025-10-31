@@ -4,10 +4,10 @@
     <div class="flex flex-col justify-center items-center w-full mb-4">
         <p class="text-center italic text-2xl text-stone-500 pb-6">Sélectionnez votre pirate :</p>
         <div class="flex justify-center items-center w-full md:w-1/2 mb-2">
-            <PortraitSelect :player="vanNistelrouye" @click="playerName = vanNistelrouye.name" :class="{ 'filter-none border-amber-600 bg-slate-500 transform -scale-x-100': playerName === 'Van Nistelrouye' }"/>
-            <PortraitSelect :player="francoisDeSurcoup" @click="playerName = francoisDeSurcoup.name" :class="{ 'filter-none border-purple-500 bg-slate-500 transform -scale-x-100': playerName === 'François de Surcoup' }"/>
-            <PortraitSelect :player="jungleJane" @click="playerName = jungleJane.name" :class="{ 'filter-none border-green-500 bg-slate-500 transform -scale-x-100': playerName === 'Jungle Jane' }"/>
-            <PortraitSelect :player="jackMarrow" @click="playerName = jackMarrow.name" :class="{ 'filter-none border-red-500 bg-slate-500 transform -scale-x-100': playerName === 'Jack Marrow' }"/>
+            <PortraitSelect :player="vanNistelrouye" @click="playerName = vanNistelrouye.name" :class="{ 'filter-none border-amber-600 bg-slate-500 transform -scale-x-100': playerName === vanNistelrouye.name }"/>
+            <PortraitSelect :player="francoisDeSurcoup" @click="playerName = francoisDeSurcoup.name" :class="{ 'filter-none border-purple-500 bg-slate-500 transform -scale-x-100': playerName === francoisDeSurcoup.name }"/>
+            <PortraitSelect :player="jungleJane" @click="playerName = jungleJane.name" :class="{ 'filter-none border-green-500 bg-slate-500 transform -scale-x-100': playerName === jungleJane.name }"/>
+            <PortraitSelect :player="jackMarrow" @click="playerName = jackMarrow.name" :class="{ 'filter-none border-red-500 bg-slate-500 transform -scale-x-100': playerName === jackMarrow.name }"/>
         </div>
         <div v-if="playerName!=''">
             <p class="text-center italic text-2xl text-stone-500 pb-6">Je choisis {{ playerName }} !</p>
