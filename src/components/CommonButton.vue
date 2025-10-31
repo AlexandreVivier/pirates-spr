@@ -11,7 +11,6 @@
 import { defineProps } from 'vue'
 import { useRouter } from 'vue-router'
 
-// Définir les props
 const props = defineProps({
     action: String,
     label: String
@@ -19,10 +18,9 @@ const props = defineProps({
 
 const router = useRouter()
 
-// Fonction pour naviguer
 const navigate = () => {
     if (props.action) {
-        router.push(props.action) // Utiliser props.action ici
+        router.push(props.action)
     } else {
         console.warn("Aucune action définie pour ce bouton.")
     }
