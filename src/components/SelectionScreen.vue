@@ -6,27 +6,27 @@
         <div class="flex justify-center items-center w-full md:w-1/2 mb-2">
             <div class="inline-block">
                 <img src="/images/portraits/portraitP.gif" alt="Van Nistelrouye" class="inline-block border-double border-8 filter grayscale hover:filter-none border-stone-500 hover:border-amber-700 bg-stone-400 hover:bg-slate-600 hover:cursor-pointer transition ease-in-out delay-150"
-            @click="playerName = 'Van Nistelrouye'"
-            :class="{ 'filter-none border-amber-600 bg-slate-500 transform -scale-x-100': playerName === 'Van Nistelrouye' }"
-            />
+                @click="playerName = 'Van Nistelrouye'"
+                :class="{ 'filter-none border-amber-600 bg-slate-500 transform -scale-x-100': playerName === 'Van Nistelrouye' }"
+                />
             </div>
             <div class="inline-block">
-            <img src="/images/portraits/portraitE.gif" alt="François de Surcoup" class="inline-block border-double border-8 filter grayscale hover:filter-none border-stone-500 hover:border-purple-900 bg-stone-400 hover:bg-slate-600 hover:cursor-pointer transition ease-in-out delay-150"
-            @click="playerName = 'François de Surcoup'"
-            :class="{ 'filter-none border-purple-500 bg-slate-500 transform -scale-x-100': playerName === 'François de Surcoup' }"
-            />
+                <img src="/images/portraits/portraitE.gif" alt="François de Surcoup" class="inline-block border-double border-8 filter grayscale hover:filter-none border-stone-500 hover:border-purple-900 bg-stone-400 hover:bg-slate-600 hover:cursor-pointer transition ease-in-out delay-150"
+                @click="playerName = 'François de Surcoup'"
+                :class="{ 'filter-none border-purple-500 bg-slate-500 transform -scale-x-100': playerName === 'François de Surcoup' }"
+                />
             </div>
             <div class="inline-block">
-            <img src="/images/portraits/portraitS.gif" alt="Jack Marrow Portrait" class="inline-block border-double border-8 filter grayscale hover:filter-none border-stone-500 hover:border-red-700 bg-stone-400 hover:bg-slate-600 hover:cursor-pointer transition ease-in-out delay-150"
-            @click="playerName = 'Jack Marrow'"
-            :class="{ 'filter-none border-red-500 bg-slate-500 transform -scale-x-100': playerName === 'Jack Marrow' }"
-            />
+                <img src="/images/portraits/portraitS.gif" alt="Jack Marrow Portrait" class="inline-block border-double border-8 filter grayscale hover:filter-none border-stone-500 hover:border-red-700 bg-stone-400 hover:bg-slate-600 hover:cursor-pointer transition ease-in-out delay-150"
+                @click="playerName = 'Jack Marrow'"
+                :class="{ 'filter-none border-red-500 bg-slate-500 transform -scale-x-100': playerName === 'Jack Marrow' }"
+                />
             </div>
             <div class="inline-block">
-            <img src="/images/portraits/portraitJ.gif" alt="Jungle Jane" class="inline-block border-double border-8 filter grayscale hover:filter-none border-stone-500 hover:border-green-600 bg-stone-400 hover:bg-slate-600 hover:cursor-pointer transition ease-in-out delay-150"
-            @click="playerName = 'Jungle Jane'"
-            :class="{ 'filter-none border-green-500 bg-slate-500 transform -scale-x-100': playerName === 'Jungle Jane' }"
-            />
+                <img src="/images/portraits/portraitJ.gif" alt="Jungle Jane" class="inline-block border-double border-8 filter grayscale hover:filter-none border-stone-500 hover:border-green-600 bg-stone-400 hover:bg-slate-600 hover:cursor-pointer transition ease-in-out delay-150"
+                @click="playerName = 'Jungle Jane'"
+                :class="{ 'filter-none border-green-500 bg-slate-500 transform -scale-x-100': playerName === 'Jungle Jane' }"
+                />
             </div>
         </div>
         <div v-if="playerName!=''">
