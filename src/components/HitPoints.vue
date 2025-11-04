@@ -4,17 +4,11 @@
                 {{ label }}
             </h2>
             <div class="flex justify-center items-center mb-4 py-2 px-4">
-                <p v-if="health === 2" class="opacity-35">
-                    💔
-                </p>
-                <p v-else-if="health === 1" class="opacity-35">
-                    💔💔
-                </p>
-                <p v-else-if="health === 0" class="opacity-35">
-                    💔💔💔
-                </p>
-                <p v-for="n in health" :key="n">
+                <p v-for="n in props.currHealth" :key="n">
                     ❤️
+                </p>
+                <p v-for="n in props.maxHealth - props.currHealth" :key="n" class="opacity-35">
+                    💔
                 </p>
             </div>
         </div>
@@ -23,8 +17,9 @@
 <script lang="js" setup>
 import { defineProps } from 'vue'
 
-defineProps({
+const props = defineProps({
     label: String,
-    health: Number
+    currHealth: Number,
+    maxHealth: Number,
 })
 </script>

@@ -4,8 +4,8 @@
         <TitleCard v-if="gameover === true"/>
 
         <div class="flex justify-around items-center w-full">
-            <HitPoints label="Points de vie" :health="playerHealth" />
-            <HitPoints label="Points de vie ennemis" :health="enemyHealth" class="flex-row-reverse"/>
+            <HitPoints label="Points de vie" :currHealth="playerCurrHealth" :maxHealth="playerMaxHealth" />
+            <HitPoints label="Points de vie ennemis" :currHealth="enemyCurrHealth" :maxHealth="enemyMaxHealth" class="flex-row-reverse"/>
         </div>
 
         <div v-show="gameover === true" class="flex flex-col justify-center items-center mb-4">
@@ -33,12 +33,12 @@ import TitleCard from './TitleCard.vue'
 import HistoryLog from './HistoryLog.vue'
 import CommonButton from './CommonButton.vue'
 import DuelingImages2 from './DuelingImages2.vue'
-// import { 
-//   vanNistelrouye, 
-//   francoisDeSurcoup, 
-//   jungleJane, 
-//   jackMarrow 
-// } from './classes/characters.js'
+import { 
+  vanNistelrouye, 
+  francoisDeSurcoup, 
+  jungleJane, 
+  jackMarrow 
+} from './classes/characters.js'
 
 const route = useRoute()
 
@@ -47,37 +47,39 @@ const allNames = ['Van Nistelrouye', 'François de Surcoup', 'Jack Marrow', 'Jun
 const ennemyName = allNames.filter(name => name !== playerName)[Math.floor(Math.random() * (allNames.length - 1))]
 // console.log('Ennemy selected:', ennemyName, 'against player:', playerName)
 
-// const player = computed(() => {
-//     switch (playerName) {
-//         case 'Van Nistelrouye':
-//             return vanNistelrouye;
-//         case 'François de Surcoup':
-//             return francoisDeSurcoup;
-//         case 'Jungle Jane':
-//             return jungleJane;
-//         case 'Jack Marrow':
-//             return jackMarrow;
-//         default:
-//             return vanNistelrouye;
-//     }
-// });
+const player = computed(() => {
+    switch (playerName) {
+        case 'Van Nistelrouye':
+            return vanNistelrouye;
+        case 'François de Surcoup':
+            return francoisDeSurcoup;
+        case 'Jungle Jane':
+            return jungleJane;
+        case 'Jack Marrow':
+            return jackMarrow;
+        default:
+            return vanNistelrouye;
+    }
+});
 
-// const enemy = computed(() => {
-//     switch (ennemyName) {
-//         case 'Van Nistelrouye':
-//             return vanNistelrouye;
-//         case 'François de Surcoup':
-//             return francoisDeSurcoup;
-//         case 'Jungle Jane':
-//             return jungleJane;
-//         case 'Jack Marrow':
-//             return jackMarrow;
-//         default:
-//             return francoisDeSurcoup;
-//     }
-// });
-const playerHealth = ref(3)
-const enemyHealth = ref(3)
+const enemy = computed(() => {
+    switch (ennemyName) {
+        case 'Van Nistelrouye':
+            return vanNistelrouye;
+        case 'François de Surcoup':
+            return francoisDeSurcoup;
+        case 'Jungle Jane':
+            return jungleJane;
+        case 'Jack Marrow':
+            return jackMarrow;
+        default:
+            return francoisDeSurcoup;
+    }
+});
+const playerCurrHealth = ref(player.value.currHealth)
+const enemyCurrHealth = ref(enemy.value.currHealth)
+const playerMaxHealth = ref(player.value.maxHealth)
+const enemyMaxHealth = ref(enemy.value.maxHealth)
 const logs = ref([])
 const gameover = ref(false)
 const endGameMessage = ref('')
@@ -120,13 +122,13 @@ function updateHistory(fight) {
     playerChoice.value = fight.playerChoice
     computerChoice.value = fight.computerChoice
     if (fight.result === 'Vous avez perdu !') {
-        playerHealth.value--
+        playerCurrHealth.value--
     } else if (fight.result === 'Vous avez gagné !') {
-        enemyHealth.value--
+        enemyCurrHealth.value--
     }
-    if (playerHealth.value === 0 || enemyHealth.value === 0) {
+    if (playerCurrHealth.value === 0 || enemyCurrHealth.value === 0) {
         gameover.value = true
-        endGameMessage.value = playerHealth.value === 0 ? 'Vous avez perdu la partie !' : 'Vous avez gagné la partie !'
+        endGameMessage.value = playerCurrHealth.value === 0 ? 'Vous avez perdu la partie !' : 'Vous avez gagné la partie !'
     }
 }
 </script>

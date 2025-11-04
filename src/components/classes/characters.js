@@ -1,8 +1,9 @@
 // src/classes/characters.js
 class Character {
-    constructor(name, health, portrait, skins, abilities, biography, description) {
+    constructor(name, currHealth, maxHealth, portrait, skins, abilities, biography, description) {
         this.name = name;
-        this.health = health;
+        this.currHealth = currHealth;
+        this.maxHealth = maxHealth;
         this.portrait = portrait;
         this.skins = skins;
         this.abilities = abilities;
@@ -13,6 +14,7 @@ class Character {
 
 const vanNistelrouye = new Character(
     'Van Nistelrouye',
+    3,
     3,
     '/images/portraits/van_nistelrouye.gif',
     {
@@ -29,6 +31,7 @@ const vanNistelrouye = new Character(
 const jungleJane = new Character(
     'Jungle Jane',
     3,
+    3,
     '/images/portraits/jungle_jane.gif',
     {
         attaquer: '/images/sprites/JungleJane/attack.gif',
@@ -44,6 +47,7 @@ const jungleJane = new Character(
 const jackMarrow = new Character(
     'Jack Marrow',
     3,
+    3,
     '/images/portraits/jack_marrow.gif',
     {
         attaquer: '/images/sprites/JackMarrow/attack.gif',
@@ -58,6 +62,7 @@ const jackMarrow = new Character(
 
 const francoisDeSurcoup = new Character(
     'François de Surcoup',
+    5,
     5,
     '/images/portraits/francois_de_surcoup.gif',
     {
