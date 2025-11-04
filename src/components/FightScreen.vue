@@ -50,30 +50,30 @@ const endGameMessage = ref('')
 const playerSkins = computed(() => {
 switch (playerName) {
     case 'Van Nistelrouye':
-        return { attaquer: '/images/sprites/attackP.gif', parer: '/images/sprites/blockP.gif', moquer: '/images/sprites/mockP.gif', idle: '/images/sprites/iddleP.gif' }
+        return { attaquer: '/images/sprites/VanNistelrouye/attack.gif', parer: '/images/sprites/VanNistelrouye/block.gif', moquer: '/images/sprites/VanNistelrouye/mock.gif', idle: '/images/sprites/VanNistelrouye/iddle.gif' }
     case 'François de Surcoup':
-        return { attaquer: '/images/sprites/attackE.gif', parer: '/images/sprites/blockE.gif', moquer: '/images/sprites/mockE.gif', idle: '/images/sprites/iddleE.gif' }
+        return { attaquer: '/images/sprites/FrancoisDeSurcoup/attack.gif', parer: '/images/sprites/FrancoisDeSurcoup/block.gif', moquer: '/images/sprites/FrancoisDeSurcoup/mock.gif', idle: '/images/sprites/FrancoisDeSurcoup/iddle.gif' }
     case 'Jack Marrow':
-        return { attaquer: '/images/sprites/attackS.gif', parer: '/images/sprites/blockS.gif', moquer: '/images/sprites/mockS.gif', idle: '/images/sprites/iddleS.gif' }
+        return { attaquer: '/images/sprites/JackMarrow/attack.gif', parer: '/images/sprites/JackMarrow/block.gif', moquer: '/images/sprites/JackMarrow/mock.gif', idle: '/images/sprites/JackMarrow/iddle.gif' }
     case 'Jungle Jane':
-        return { attaquer: '/images/sprites/attackJ.gif', parer: '/images/sprites/blockJ.gif', moquer: '/images/sprites/mockJ.gif', idle: '/images/sprites/iddleJ.gif' }
+        return { attaquer: '/images/sprites/JungleJane/attack.gif', parer: '/images/sprites/JungleJane/block.gif', moquer: '/images/sprites/JungleJane/mock.gif', idle: '/images/sprites/JungleJane/iddle.gif' }
     default:
-        return { attaquer: '/images/sprites/attackP.gif', parer: '/images/sprites/blockP.gif', moquer: '/images/sprites/mockP.gif', idle: '/images/sprites/iddleP.gif' }
+        return { attaquer: '/images/sprites/attack.gif', parer: '/images/sprites/block.gif', moquer: '/images/sprites/mock.gif', idle: '/images/sprites/iddle.gif' }
 }
 })
 
 const enemySkins = computed(() => {
 switch (ennemyName) {
     case 'Van Nistelrouye':
-        return { attaquer: '/images/sprites/attackP.gif', parer: '/images/sprites/blockP.gif', moquer: '/images/sprites/mockP.gif', idle: '/images/sprites/iddleP.gif' }
+        return { attaquer: '/images/sprites/VanNistelrouye/attack.gif', parer: '/images/sprites/VanNistelrouye/block.gif', moquer: '/images/sprites/VanNistelrouye/mock.gif', idle: '/images/sprites/VanNistelrouye/iddle.gif' }
     case 'François de Surcoup':
-        return { attaquer: '/images/sprites/attackE.gif', parer: '/images/sprites/blockE.gif', moquer: '/images/sprites/mockE.gif', idle: '/images/sprites/iddleE.gif' }
+        return { attaquer: '/images/sprites/FrancoisDeSurcoup/attack.gif', parer: '/images/sprites/FrancoisDeSurcoup/block.gif', moquer: '/images/sprites/FrancoisDeSurcoup/mock.gif', idle: '/images/sprites/FrancoisDeSurcoup/iddle.gif' }
     case 'Jack Marrow':
-        return { attaquer: '/images/sprites/attackS.gif', parer: '/images/sprites/blockS.gif', moquer: '/images/sprites/mockS.gif', idle: '/images/sprites/iddleS.gif' }
+        return { attaquer: '/images/sprites/JackMarrow/attack.gif', parer: '/images/sprites/JackMarrow/block.gif', moquer: '/images/sprites/JackMarrow/mock.gif', idle: '/images/sprites/JackMarrow/iddle.gif' }
     case 'Jungle Jane':
-        return { attaquer: '/images/sprites/attackJ.gif', parer: '/images/sprites/blockJ.gif', moquer: '/images/sprites/mockJ.gif', idle: '/images/sprites/iddleJ.gif' }
+        return { attaquer: '/images/sprites/JungleJane/attack.gif', parer: '/images/sprites/JungleJane/block.gif', moquer: '/images/sprites/JungleJane/mock.gif', idle: '/images/sprites/JungleJane/iddle.gif' }
     default:
-        return { attaquer: '/images/sprites/attackE.gif', parer: '/images/sprites/blockE.gif', moquer: '/images/sprites/mockE.gif', idle: '/images/sprites/iddleE.gif' }
+        return { attaquer: '/images/sprites/attack.gif', parer: '/images/sprites/blockE.gif', moquer: '/images/sprites/mockE.gif', idle: '/images/sprites/iddleE.gif' }
 }
 })
 

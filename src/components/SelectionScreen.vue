@@ -4,14 +4,18 @@
     <div class="flex flex-col justify-center items-center w-full mb-4">
         <p class="text-center italic text-2xl text-stone-500 pb-6">Sélectionnez votre pirate :</p>
         <div class="flex justify-center items-center w-full md:w-1/2 mb-2">
-            <PortraitSelect :player="vanNistelrouye" @click="playerName = vanNistelrouye.name" :class="{ 'filter-none border-amber-600 bg-slate-500 transform -scale-x-100': playerName === vanNistelrouye.name }"/>
-            <PortraitSelect :player="francoisDeSurcoup" @click="playerName = francoisDeSurcoup.name" :class="{ 'filter-none border-purple-500 bg-slate-500 transform -scale-x-100': playerName === francoisDeSurcoup.name }"/>
-            <PortraitSelect :player="jungleJane" @click="playerName = jungleJane.name" :class="{ 'filter-none border-green-500 bg-slate-500 transform -scale-x-100': playerName === jungleJane.name }"/>
-            <PortraitSelect :player="jackMarrow" @click="playerName = jackMarrow.name" :class="{ 'filter-none border-red-500 bg-slate-500 transform -scale-x-100': playerName === jackMarrow.name }"/>
+            <PortraitSelect :player="vanNistelrouye" @click="playerName = vanNistelrouye.name" :class="{ 'filter-none border-double border-8 border-red-600 bg-slate-700 transform -scale-x-100': playerName === vanNistelrouye.name }"/>
+            <PortraitSelect :player="francoisDeSurcoup" @click="playerName = francoisDeSurcoup.name" :class="{ 'filter-none border-double border-8 border-red-600 bg-slate-700 transform -scale-x-100': playerName === francoisDeSurcoup.name }"/>
+            <PortraitSelect :player="jungleJane" @click="playerName = jungleJane.name" :class="{ 'filter-none border-double border-8 border-red-600 bg-slate-700 transform -scale-x-100': playerName === jungleJane.name }"/>
+            <PortraitSelect :player="jackMarrow" @click="playerName = jackMarrow.name" :class="{ 'filter-none border-double border-8 border-red-600 bg-slate-700 transform -scale-x-100': playerName === jackMarrow.name }"/>
         </div>
-        <div v-if="playerName!=''">
+        <div v-if="playerName!=''" class="w-full flex flex-col items-center">
             <p class="text-center italic text-2xl text-stone-500 pb-6">Je choisis {{ playerName }} !</p>
-            <CommonButton label="Commencer à jouer !" :action="{ path: '/fight', query: { playerName } }"/>
+            <CommonButton class="w-1/4" label="Commencer à jouer !" :action="{ path: '/fight', query: { playerName } }"/>
+        </div>
+        <div v-if="playerBiography" class="w-full flex flex-col text-shadow-special items-center mt-8 px-4">
+            <p class="text-center text-stone-900 dark:text-stone-100 text-4xl w-1/2 font-bold bastarda py-4">"{{ playerBiography }}"</p>
+            <p class="text-center italic text-stone-800 dark:text-stone-300 text-2xl pt-4">- {{ playerDescription }} -</p>
         </div>
     </div>
 </div>
@@ -19,31 +23,48 @@
 
 <script lang="js" setup>
 import { ref } from 'vue'
+import { computed } from 'vue'
 import TitleCard from './TitleCard.vue'
 import CommonButton from './CommonButton.vue'
 import PortraitSelect from './PortraitSelect.vue'
+import { 
+  vanNistelrouye, 
+  francoisDeSurcoup, 
+  jungleJane, 
+  jackMarrow 
+} from './classes/characters.js'
+
 const playerName = ref('') 
 
-const jackMarrow = {
-    name: 'Jack Marrow',
-    portrait: '/images/portraits/portraitS.gif',
-    alt: 'Jack Marrow Portrait'
-}
-const vanNistelrouye = {
-    name: 'Van Nistelrouye',
-    portrait: '/images/portraits/portraitP.gif',
-    alt: 'Van Nistelrouye Portrait'
-}
-const francoisDeSurcoup = {
-    name: 'François de Surcoup',
-    portrait: '/images/portraits/portraitE.gif',
-    alt: 'François de Surcoup Portrait'
-}
-const jungleJane = {
-    name: 'Jungle Jane',
-    portrait: '/images/portraits/portraitJ.gif',
-    alt: 'Jungle Jane Portrait'
-}
+const playerBiography = computed(() => {
+    switch (playerName.value) {
+        case 'Van Nistelrouye':
+            return vanNistelrouye.biography;
+        case 'François de Surcoup':
+            return francoisDeSurcoup.biography;
+        case 'Jungle Jane':
+            return jungleJane.biography;
+        case 'Jack Marrow':
+            return jackMarrow.biography;
+        default:
+            return '';
+    }
+});
+
+const playerDescription = computed(() => {
+    switch (playerName.value) {
+        case 'Van Nistelrouye':
+            return vanNistelrouye.description;
+        case 'François de Surcoup':
+            return francoisDeSurcoup.description;
+        case 'Jungle Jane':
+            return jungleJane.description;
+        case 'Jack Marrow':
+            return jackMarrow.description;
+        default:
+            return '';
+    }
+});
 </script>
 
 
@@ -52,6 +73,9 @@ const jungleJane = {
     font-family: 'bastarda';
 }
 
+.text-shadow-special {
+    text-shadow: 2px 2px 0px rgb(130, 66, 66);
+}
 .text-stroke-3 {
     -webkit-text-stroke:0.02em rgb(130, 66, 66);
 }
