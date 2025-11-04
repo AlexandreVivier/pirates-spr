@@ -33,6 +33,12 @@ import TitleCard from './TitleCard.vue'
 import HistoryLog from './HistoryLog.vue'
 import CommonButton from './CommonButton.vue'
 import DuelingImages2 from './DuelingImages2.vue'
+// import { 
+//   vanNistelrouye, 
+//   francoisDeSurcoup, 
+//   jungleJane, 
+//   jackMarrow 
+// } from './classes/characters.js'
 
 const route = useRoute()
 
@@ -41,6 +47,35 @@ const allNames = ['Van Nistelrouye', 'François de Surcoup', 'Jack Marrow', 'Jun
 const ennemyName = allNames.filter(name => name !== playerName)[Math.floor(Math.random() * (allNames.length - 1))]
 // console.log('Ennemy selected:', ennemyName, 'against player:', playerName)
 
+// const player = computed(() => {
+//     switch (playerName) {
+//         case 'Van Nistelrouye':
+//             return vanNistelrouye;
+//         case 'François de Surcoup':
+//             return francoisDeSurcoup;
+//         case 'Jungle Jane':
+//             return jungleJane;
+//         case 'Jack Marrow':
+//             return jackMarrow;
+//         default:
+//             return vanNistelrouye;
+//     }
+// });
+
+// const enemy = computed(() => {
+//     switch (ennemyName) {
+//         case 'Van Nistelrouye':
+//             return vanNistelrouye;
+//         case 'François de Surcoup':
+//             return francoisDeSurcoup;
+//         case 'Jungle Jane':
+//             return jungleJane;
+//         case 'Jack Marrow':
+//             return jackMarrow;
+//         default:
+//             return francoisDeSurcoup;
+//     }
+// });
 const playerHealth = ref(3)
 const enemyHealth = ref(3)
 const logs = ref([])
