@@ -72,7 +72,7 @@ const francoisDeSurcoup = new Character(
         idle: '/images/sprites/FrancoisDeSurcoup/iddle.gif'
     },
     ['Attack', 'Block', 'Mock'],
-    'Noble déchu du vieux continent, François de Surcoup a toujours le verbe aussi haut, la frappe aussi assûrée et le style le plus français des Caraïbes.',
+    'Corsaire à la malchance improbable, il peut cependant compter sur une endurance hors du commun pour survivre aux pires situations.',
     'François de Surcoup possède 5 points de vie au lieu de 3.'
 );
 

@@ -87,7 +87,7 @@ const endGameMessage = ref('')
 const playerSkins = computed(() => {
 switch (playerName) {
     case 'Barbe-blonde':
-        return { attaquer: '/images/sprites/Barbe-blonde/attack.gif', parer: '/images/sprites/Barbe-blonde/block.gif', moquer: '/images/sprites/Barbeblonde/mock.gif', idle: '/images/sprites/Barbeblonde/iddle.gif' }
+        return { attaquer: '/images/sprites/Barbe-blonde/attack.gif', parer: '/images/sprites/Barbe-blonde/block.gif', moquer: '/images/sprites/Barbe-blonde/mock.gif', idle: '/images/sprites/Barbe-blonde/iddle.gif' }
     case 'François de Surcoup':
         return { attaquer: '/images/sprites/FrancoisDeSurcoup/attack.gif', parer: '/images/sprites/FrancoisDeSurcoup/block.gif', moquer: '/images/sprites/FrancoisDeSurcoup/mock.gif', idle: '/images/sprites/FrancoisDeSurcoup/iddle.gif' }
     case 'Jack Marrow':
