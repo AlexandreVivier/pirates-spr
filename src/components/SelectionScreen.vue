@@ -4,10 +4,10 @@
     <div class="flex flex-col justify-center items-center w-full mb-4">
         <p class="text-center italic text-2xl text-stone-500 pb-6">Sélectionnez votre pirate :</p>
         <div class="flex justify-center items-center w-full md:w-1/2 mb-2">
-            <PortraitSelect :player="barbeBlonde" @click="playerName = barbeBlonde.name" :class="{ 'filter-none border-double border-8 border-red-700 bg-slate-900 transform -scale-x-100': playerName === barbeBlonde.name }"/>
-            <PortraitSelect :player="francoisDeSurcoup" @click="playerName = francoisDeSurcoup.name" :class="{ 'filter-none border-double border-8 border-red-700 bg-slate-900 transform -scale-x-100': playerName === francoisDeSurcoup.name }"/>
-            <PortraitSelect :player="jungleJane" @click="playerName = jungleJane.name" :class="{ 'filter-none border-double border-8 border-red-700 bg-slate-900 transform -scale-x-100': playerName === jungleJane.name }"/>
-            <PortraitSelect :player="jackMarrow" @click="playerName = jackMarrow.name" :class="{ 'filter-none border-double border-8 border-red-700 bg-slate-900 transform -scale-x-100': playerName === jackMarrow.name }"/>
+            <PortraitSelect :player="barbeBlonde" @click="playerName = barbeBlonde.name" :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === barbeBlonde.name }"/>
+            <PortraitSelect :player="francoisDeSurcoup" @click="playerName = francoisDeSurcoup.name" :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === francoisDeSurcoup.name }"/>
+            <PortraitSelect :player="jungleJane" @click="playerName = jungleJane.name" :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === jungleJane.name }"/>
+            <PortraitSelect :player="jackMarrow" @click="playerName = jackMarrow.name" :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === jackMarrow.name }"/>
         </div>
         <div v-if="playerName!=''" class="w-full flex flex-col items-center">
             <p class="text-center italic text-2xl text-stone-500 pb-6">Je choisis {{ playerName }} !</p>
