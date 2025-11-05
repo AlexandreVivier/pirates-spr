@@ -20,6 +20,7 @@
         </div>
 
         <HistoryLog :logs="logs"/>
+        <AppCopyrights />
     </div>
     </div>
 </template>
@@ -33,6 +34,7 @@ import TitleCard from './TitleCard.vue'
 import HistoryLog from './HistoryLog.vue'
 import CommonButton from './CommonButton.vue'
 import DuelingImages2 from './DuelingImages2.vue'
+import AppCopyrights from './AppCopyrights.vue'
 import { 
   barbeBlonde, 
   francoisDeSurcoup, 

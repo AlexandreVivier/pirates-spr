@@ -18,6 +18,7 @@
             <p class="text-center italic text-stone-800 dark:text-stone-300 text-md md:text-2xl md:pt-4">- {{ playerDescription }} -</p>
         </div>
     </div>
+    <AppCopyrights />
 </div>
 </template>
 
@@ -27,6 +28,7 @@ import { computed } from 'vue'
 import TitleCard from './TitleCard.vue'
 import CommonButton from './CommonButton.vue'
 import PortraitSelect from './PortraitSelect.vue'
+import AppCopyrights from './AppCopyrights.vue'
 import { 
   barbeBlonde, 
   francoisDeSurcoup, 
