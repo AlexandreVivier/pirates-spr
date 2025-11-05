@@ -1,11 +1,11 @@
 <template>
-    <div class="bg-stone-100 dark:bg-stone-900 h-full">
+    <div class="bg-stone-100 dark:bg-stone-900 min-h-screen">
     <div class="flex flex-col items-center w-full bg-stone-100 dark:bg-stone-900 h-screen">
         <TitleCard v-if="gameover === true"/>
 
         <div class="flex justify-around items-center w-full">
-            <HitPoints label="Points de vie" :currHealth="playerCurrHealth" :maxHealth="playerMaxHealth" />
-            <HitPoints label="Points de vie ennemis" :currHealth="enemyCurrHealth" :maxHealth="enemyMaxHealth" class="flex-row-reverse"/>
+            <HitPoints label="(Vous)" :currHealth="playerCurrHealth" :maxHealth="playerMaxHealth" :charaName="playerName"/>
+            <HitPoints label="(Ennemi)" :currHealth="enemyCurrHealth" :maxHealth="enemyMaxHealth" :charaName="ennemyName" class="flex-row-reverse"/>
         </div>
 
         <div v-show="gameover === true" class="flex flex-col justify-center items-center mb-4">
@@ -13,7 +13,7 @@
             <CommonButton label="Rejouer ?" action="/selection"/>
         </div>
 
-        <div v-if="gameover === false" class="flex flex-col w-full min-h-screen justify-center items-center">
+        <div v-if="gameover === false" class="flex flex-col w-full min-h-[50vh] justify-center items-center">
             <DuelingImages2 :playerSkin="playerSkins[playerChoice]" 
             :ennemySkin="enemySkins[computerChoice]"/>
             <ActionPannel @update-history="updateHistory"/>
