@@ -34,7 +34,7 @@ import HistoryLog from './HistoryLog.vue'
 import CommonButton from './CommonButton.vue'
 import DuelingImages2 from './DuelingImages2.vue'
 import { 
-  vanNistelrouye, 
+  barbeBlonde, 
   francoisDeSurcoup, 
   jungleJane, 
   jackMarrow 
@@ -42,15 +42,15 @@ import {
 
 const route = useRoute()
 
-const playerName = route.query.playerName || 'Van Nistelrouye'
-const allNames = ['Van Nistelrouye', 'François de Surcoup', 'Jack Marrow', 'Jungle Jane']
+const playerName = route.query.playerName || 'Barbe-blonde'
+const allNames = ['Barbe-blonde', 'François de Surcoup', 'Jack Marrow', 'Jungle Jane']
 const ennemyName = allNames.filter(name => name !== playerName)[Math.floor(Math.random() * (allNames.length - 1))]
 // console.log('Ennemy selected:', ennemyName, 'against player:', playerName)
 
 const player = computed(() => {
     switch (playerName) {
-        case 'Van Nistelrouye':
-            return vanNistelrouye;
+        case 'Barbe-blonde':
+            return barbeBlonde;
         case 'François de Surcoup':
             return francoisDeSurcoup;
         case 'Jungle Jane':
@@ -58,14 +58,14 @@ const player = computed(() => {
         case 'Jack Marrow':
             return jackMarrow;
         default:
-            return vanNistelrouye;
+            return barbeBlonde;
     }
 });
 
 const enemy = computed(() => {
     switch (ennemyName) {
-        case 'Van Nistelrouye':
-            return vanNistelrouye;
+        case 'Barbe-blonde':
+            return barbeBlonde;
         case 'François de Surcoup':
             return francoisDeSurcoup;
         case 'Jungle Jane':
@@ -86,8 +86,8 @@ const endGameMessage = ref('')
 
 const playerSkins = computed(() => {
 switch (playerName) {
-    case 'Van Nistelrouye':
-        return { attaquer: '/images/sprites/VanNistelrouye/attack.gif', parer: '/images/sprites/VanNistelrouye/block.gif', moquer: '/images/sprites/VanNistelrouye/mock.gif', idle: '/images/sprites/VanNistelrouye/iddle.gif' }
+    case 'Barbe-blonde':
+        return { attaquer: '/images/sprites/Barbe-blonde/attack.gif', parer: '/images/sprites/Barbe-blonde/block.gif', moquer: '/images/sprites/Barbeblonde/mock.gif', idle: '/images/sprites/Barbeblonde/iddle.gif' }
     case 'François de Surcoup':
         return { attaquer: '/images/sprites/FrancoisDeSurcoup/attack.gif', parer: '/images/sprites/FrancoisDeSurcoup/block.gif', moquer: '/images/sprites/FrancoisDeSurcoup/mock.gif', idle: '/images/sprites/FrancoisDeSurcoup/iddle.gif' }
     case 'Jack Marrow':
@@ -101,8 +101,8 @@ switch (playerName) {
 
 const enemySkins = computed(() => {
 switch (ennemyName) {
-    case 'Van Nistelrouye':
-        return { attaquer: '/images/sprites/VanNistelrouye/attack.gif', parer: '/images/sprites/VanNistelrouye/block.gif', moquer: '/images/sprites/VanNistelrouye/mock.gif', idle: '/images/sprites/VanNistelrouye/iddle.gif' }
+    case 'Barbe-blonde':
+        return { attaquer: '/images/sprites/Barbe-blonde/attack.gif', parer: '/images/sprites/Barbe-blonde/block.gif', moquer: '/images/sprites/Barbe-blonde/mock.gif', idle: '/images/sprites/Barbe-blonde/iddle.gif' }
     case 'François de Surcoup':
         return { attaquer: '/images/sprites/FrancoisDeSurcoup/attack.gif', parer: '/images/sprites/FrancoisDeSurcoup/block.gif', moquer: '/images/sprites/FrancoisDeSurcoup/mock.gif', idle: '/images/sprites/FrancoisDeSurcoup/iddle.gif' }
     case 'Jack Marrow':

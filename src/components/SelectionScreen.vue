@@ -4,7 +4,7 @@
     <div class="flex flex-col justify-center items-center w-full mb-4">
         <p class="text-center italic text-2xl text-stone-500 pb-6">Sélectionnez votre pirate :</p>
         <div class="flex justify-center items-center w-full md:w-1/2 mb-2">
-            <PortraitSelect :player="vanNistelrouye" @click="playerName = vanNistelrouye.name" :class="{ 'filter-none border-double border-8 border-red-600 bg-slate-700 transform -scale-x-100': playerName === vanNistelrouye.name }"/>
+            <PortraitSelect :player="barbeBlonde" @click="playerName = barbeBlonde.name" :class="{ 'filter-none border-double border-8 border-red-600 bg-slate-700 transform -scale-x-100': playerName === barbeBlonde.name }"/>
             <PortraitSelect :player="francoisDeSurcoup" @click="playerName = francoisDeSurcoup.name" :class="{ 'filter-none border-double border-8 border-red-600 bg-slate-700 transform -scale-x-100': playerName === francoisDeSurcoup.name }"/>
             <PortraitSelect :player="jungleJane" @click="playerName = jungleJane.name" :class="{ 'filter-none border-double border-8 border-red-600 bg-slate-700 transform -scale-x-100': playerName === jungleJane.name }"/>
             <PortraitSelect :player="jackMarrow" @click="playerName = jackMarrow.name" :class="{ 'filter-none border-double border-8 border-red-600 bg-slate-700 transform -scale-x-100': playerName === jackMarrow.name }"/>
@@ -28,7 +28,7 @@ import TitleCard from './TitleCard.vue'
 import CommonButton from './CommonButton.vue'
 import PortraitSelect from './PortraitSelect.vue'
 import { 
-  vanNistelrouye, 
+  barbeBlonde, 
   francoisDeSurcoup, 
   jungleJane, 
   jackMarrow 
@@ -38,8 +38,8 @@ const playerName = ref('')
 
 const playerBiography = computed(() => {
     switch (playerName.value) {
-        case 'Van Nistelrouye':
-            return vanNistelrouye.biography;
+        case 'Barbe-blonde':
+            return barbeBlonde.biography;
         case 'François de Surcoup':
             return francoisDeSurcoup.biography;
         case 'Jungle Jane':
@@ -53,8 +53,8 @@ const playerBiography = computed(() => {
 
 const playerDescription = computed(() => {
     switch (playerName.value) {
-        case 'Van Nistelrouye':
-            return vanNistelrouye.description;
+        case 'Barbe-blonde':
+            return barbeBlonde.description;
         case 'François de Surcoup':
             return francoisDeSurcoup.description;
         case 'Jungle Jane':

@@ -12,20 +12,20 @@ class Character {
     }
 }
 
-const vanNistelrouye = new Character(
-    'Van Nistelrouye',
+const barbeBlonde = new Character(
+    'Barbe-blonde',
     3,
     3,
-    '/images/portraits/van_nistelrouye.gif',
+    '/images/portraits/barbe-blonde.gif',
     {
-        attaquer: '/images/sprites/VanNistelrouye/attack.gif',
-        parer: '/images/sprites/VanNistelrouye/block.gif',
-        moquer: '/images/sprites/VanNistelrouye/mock.gif',
-        idle: '/images/sprites/VanNistelrouye/iddle.gif'
+        attaquer: '/images/sprites/Barbe-blonde/attack.gif',
+        parer: '/images/sprites/Barbe-blonde/block.gif',
+        moquer: '/images/sprites/Barbe-blonde/mock.gif',
+        idle: '/images/sprites/Barbe-blonde/iddle.gif'
     },
     ['Attack', 'Block', 'Mock'],
-    'Attaquant opportuniste, précis et ayant le sens du but, sa capacité de frappe et ses talents de finisseurs en font un pirate redoutable.',
-    'Van Nistelrouye gagne le double de pièces d\'or si il gagne un combat.'
+    'Légendenaire capitaine pirate à la barbe aussi dorée que sa fortune. Mais à mesure qu\'il vieillit et grisonne, sa trésorerie se tarit, ce qui ne fait qu\'aggraver sa cupidité...',
+    'Barbe-blonde gagne le double de pièces d\'or si il gagne un combat.'
 );
 
 const jungleJane = new Character(
@@ -78,7 +78,7 @@ const francoisDeSurcoup = new Character(
 
 export {
     Character,
-    vanNistelrouye,
+    barbeBlonde,
     jungleJane,
     jackMarrow,
     francoisDeSurcoup
