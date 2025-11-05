@@ -1,5 +1,5 @@
 <template>
-    <div class="absolute bottom-2 w-full flex flex-col justify-center items-center text-center">
+    <div class="w-full flex flex-col justify-center items-center text-center">
         <p class="text-stone-950 dark:text-stone-300 font-thin text-shadow-special">
             Copyright © 2025 Alexandre Vivier - Tous droits réservés.
         </p>
