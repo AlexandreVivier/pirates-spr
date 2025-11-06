@@ -14,7 +14,7 @@
             <CommonButton class="w-full md:w-1/4" label="Commencer à jouer !" :action="{ path: '/fight', query: { playerName } }"/>
         </div>
         <div v-if="playerBiography" class="w-full flex flex-col text-shadow-special items-center mt-8 px-4">
-            <p class="text-center text-stone-900 dark:text-stone-100 text-lg md:text-4xl w-full md:w-1/2 font-bold bastarda md:py-4">"{{ playerBiography }}"</p>
+            <p class="text-center text-stone-900 dark:text-stone-100 text-lg md:text-4xl w-full md:w-1/2 font-bold jacquard12 md:py-4">"{{ playerBiography }}"</p>
             <p class="text-center italic text-stone-800 dark:text-stone-300 text-md md:text-2xl md:pt-4">- {{ playerDescription }} -</p>
         </div>
     </div>
@@ -73,6 +73,9 @@ const playerDescription = computed(() => {
 <style>
 .bastarda {
     font-family: 'bastarda';
+}
+.jacquard12 {
+    font-family: 'jacquard12';
 }
 
 .text-shadow-special {

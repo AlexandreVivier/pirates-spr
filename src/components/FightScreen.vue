@@ -141,6 +141,9 @@ function updateHistory(fight) {
 .bastarda {
     font-family: 'bastarda';
 }
+.jacquard12 {
+    font-family: 'jacquard12';
+}
 
 .text-stroke-3 {
     -webkit-text-stroke:0.02em rgb(130, 66, 66);

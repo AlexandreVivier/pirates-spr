@@ -21,4 +21,8 @@
     font-family: 'bastarda';
     src: url('~@/assets/fonts/JacquardaBastarda9-Regular.ttf');
 }
+@font-face {
+    font-family: 'jacquard12';
+    src: url('~@/assets/fonts/Jacquard12-Regular.ttf');
+}
 </style>
