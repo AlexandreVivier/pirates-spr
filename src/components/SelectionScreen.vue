@@ -2,7 +2,7 @@
 <div class="flex flex-col items-center w-screen bg-stone-100 dark:bg-stone-900 w-full h-screen py-12 gap-8">
     <TitleCard />
     <div class="flex flex-col justify-center items-center w-full mb-4">
-        <p class="text-center italic text-2xl text-stone-500 pb-6">Sélectionnez votre pirate :</p>
+        <p class="text-center italic text-2xl text-stone-500 pb-6 pixelify-sans">Sélectionnez votre pirate :</p>
         <div class="flex justify-center items-center w-full md:w-1/2 mb-2">
             <PortraitSelect :player="barbeBlonde" @click="playerName = barbeBlonde.name" :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === barbeBlonde.name }"/>
             <PortraitSelect :player="francoisDeSurcoup" @click="playerName = francoisDeSurcoup.name" :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === francoisDeSurcoup.name }"/>
@@ -10,7 +10,7 @@
             <PortraitSelect :player="jackMarrow" @click="playerName = jackMarrow.name" :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === jackMarrow.name }"/>
         </div>
         <div v-if="playerName!=''" class="w-full flex flex-col items-center">
-            <p class="text-center italic text-2xl text-stone-500 pb-6">Je choisis {{ playerName }} !</p>
+            <p class="text-center italic text-2xl text-stone-500 pb-6 pixelify-sans">Je choisis {{ playerName }} !</p>
             <CommonButton class="w-full md:w-1/4" label="Commencer à jouer !" :action="{ path: '/fight', query: { playerName } }"/>
         </div>
         <div v-if="playerBiography" class="w-full flex flex-col text-shadow-special items-center mt-8 px-4">
@@ -76,6 +76,10 @@ const playerDescription = computed(() => {
 }
 .jacquard12 {
     font-family: 'jacquard12';
+}
+
+.pixelify-sans {
+    font-family: 'pixelify-sans';
 }
 
 .text-shadow-special {

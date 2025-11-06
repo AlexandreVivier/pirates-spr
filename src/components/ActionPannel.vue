@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col justify-center items-center mb-4 w-full md:w-1/2 md:p-6 dark:text-stone-100">
         <div>
-            <h2 class="font-semibold py-2 px-4 text-center w-full bastarda text-xl md:text-2xl">Choisissez votre action :</h2>
+            <h2 class="font-semibold py-2 px-4 text-center w-full bastarda text-shadow-special text-xl md:text-2xl">Choisissez votre action :</h2>
         </div>
         <div class="flex w-full md:gap-6 justify-center">
             <div class="w-full" v-for="(choice, index) in choices" :key="index">

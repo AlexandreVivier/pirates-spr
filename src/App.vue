@@ -25,4 +25,9 @@
     font-family: 'jacquard12';
     src: url('~@/assets/fonts/Jacquard12-Regular.ttf');
 }
+
+@font-face {
+    font-family: 'pixelify-sans';
+    src: url('~@/assets/fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf');
+}
 </style>

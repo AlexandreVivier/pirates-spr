@@ -145,6 +145,10 @@ function updateHistory(fight) {
     font-family: 'jacquard12';
 }
 
+.pixelify-sans {
+    font-family: 'pixelify-sans';
+}
+
 .text-stroke-3 {
     -webkit-text-stroke:0.02em rgb(130, 66, 66);
 }
