@@ -13,17 +13,33 @@
 
 <script lang="js" setup>
 import ActionButton from './ActionButton.vue'
-import { defineEmits } from 'vue'
+import { defineEmits, computed, defineProps } from 'vue'
+
+const props = defineProps({
+    player: Object,
+    enemy: Object
+})
 
 const emit = defineEmits(['update-history'])
 
-const choices = ['attaquer', 'parer', 'moquer']
+// const choices = ['attaquer', 'parer', 'moquer']
+const choices = computed(() => props.player.availableActions)
 
 function rollFight(playerChoice) {
-    const computerChoice = choices[Math.floor(Math.random() * choices.length)]
+    // const computerChoice = choices[Math.floor(Math.random() * choices.length)]
+    const computerChoice = props.enemy.availableActions[Math.floor(Math.random() * props.enemy.availableActions.length)]
+    const playerImmunities = props.player.immunities
+    const enemyImmunities = props.enemy.immunities
     let result = ''
 
-    if (playerChoice === computerChoice) {
+    // Check for immunities
+    if (enemyImmunities.includes(playerChoice)) {
+        result = 'Vous avez perdu ! (attaque immunisée)'
+    } else if (playerImmunities.includes(computerChoice)) {
+        result = 'Vous avez gagné ! (attaque immunisée)'
+    }
+    // fight logic
+     else if (playerChoice === computerChoice) {
         result = 'Egalité'
     } else if (
         (playerChoice === 'attaquer' && computerChoice === 'moquer') ||
@@ -31,9 +47,37 @@ function rollFight(playerChoice) {
         (playerChoice === 'moquer' && computerChoice === 'parer')
     ) {
         result = 'Vous avez gagné !'
-    } else {
+    } else if (
+        (computerChoice === 'attaquer' && playerChoice === 'moquer') ||
+        (computerChoice === 'parer' && playerChoice === 'attaquer') ||
+        (computerChoice === 'moquer' && playerChoice === 'parer') ||
+        (computerChoice === 'attaquer' && playerChoice === 'moquer*') ||
+        (computerChoice === 'parer' && playerChoice === 'attaquer*') ||
+        (computerChoice === 'moquer' && playerChoice === 'parer*') 
+        ) {
         result = 'Vous avez perdu !'
-    }    
+    } else if (
+        (playerChoice === 'attaquer*' && computerChoice === 'moquer') ||
+        (playerChoice === 'parer*' && computerChoice === 'attaquer') ||
+        (playerChoice === 'moquer*' && computerChoice === 'parer') ||
+        (playerChoice === 'attaquer*' && computerChoice === 'moquer*') ||
+        (playerChoice === 'parer*' && computerChoice === 'attaquer*') ||
+        (playerChoice === 'moquer*' && computerChoice === 'parer*')
+    ) {
+        result = 'Vous avez gagné ! (coup critique)'
+    } else if (
+        (computerChoice === 'attaquer*' && playerChoice === 'moquer') ||
+        (computerChoice === 'parer*' && playerChoice === 'attaquer') ||
+        (computerChoice === 'moquer*' && playerChoice === 'parer') ||
+        (computerChoice === 'attaquer*' && playerChoice === 'moquer*') ||
+        (computerChoice === 'parer*' && playerChoice === 'attaquer*') ||
+        (computerChoice === 'moquer*' && playerChoice === 'parer*')
+        ) {
+        result = 'Vous avez perdu ! (coup critique)'
+    } else {
+        result = 'Egalité'
+    }
+    
     emit('update-history', { playerChoice, computerChoice, result })
 }
 </script>

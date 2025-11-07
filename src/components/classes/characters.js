@@ -1,12 +1,13 @@
 // src/classes/characters.js
 class Character {
-    constructor(name, currHealth, maxHealth, portrait, skins, abilities, biography, description) {
+    constructor(name, currHealth, maxHealth, portrait, skins, availableActions, immunities, biography, description) {
         this.name = name;
         this.currHealth = currHealth;
         this.maxHealth = maxHealth;
         this.portrait = portrait;
         this.skins = skins;
-        this.abilities = abilities;
+        this.availableActions = availableActions;
+        this.immunities = immunities;
         this.biography = biography;
         this.description = description;
     }
@@ -24,6 +25,7 @@ const barbeBlonde = new Character(
         idle: '/images/sprites/Barbe-blonde/iddle.gif'
     },
     ['attaquer', 'parer', 'moquer'],
+    [],
     'Légendenaire capitaine pirate à la barbe aussi dorée que sa fortune. Mais à mesure qu\'il vieillit et grisonne, sa trésorerie se tarit, ce qui ne fait qu\'aggraver sa cupidité...',
     'Barbe-blonde gagne le double de pièces d\'or si il gagne un combat.'
 );
@@ -39,7 +41,8 @@ const jungleJane = new Character(
         moquer: '/images/sprites/JungleJane/mock.gif',
         idle: '/images/sprites/JungleJane/iddle.gif'
     },
-    ['attaquer', 'parer', 'moquer'],
+    ['attaquer*', 'parer', 'moquer'],
+    [],
     'Exploratrice intrépide, Jungle Jane a parcouru toutes les jungles les plus dangereuses des Caraïbes avant de se lancer dans la piraterie. La navigation est encore un mystère pour elle, mais les coups de machete, ça lui connait !',
     'Jungle Jane fait perdre 2 points de vie quand elle \'attaque\' et touche.'
 );
@@ -56,6 +59,7 @@ const jackMarrow = new Character(
         idle: '/images/sprites/JackMarrow/iddle.gif'
     },
     ['attaquer', 'parer', 'moquer'],
+    ['moquer', 'moquer*'],
     'Pirate des temps jadis ou les consignes de sécurité à bord n\'étaient pas encore écrites, un coup de canon lui a fait perdre l\'audition. Depuis, il n\'entend pas s\'arrêter d\'écumer les océans et de graver sa légende.',
     'Jack Marrow est insensible à la \'moquerie\' adverse.'
 );
@@ -72,6 +76,7 @@ const francoisDeSurcoup = new Character(
         idle: '/images/sprites/FrancoisDeSurcoup/iddle.gif'
     },
     ['attaquer', 'parer', 'moquer'],
+    [],
     'Corsaire à la malchance improbable, il peut cependant compter sur une endurance hors du commun pour survivre aux pires situations.',
     'François de Surcoup possède 5 points de vie au lieu de 3.'
 );

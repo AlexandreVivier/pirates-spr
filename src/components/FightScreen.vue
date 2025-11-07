@@ -16,9 +16,9 @@
         </div>
 
         <div v-if="gameover === false" class="flex flex-col w-full min-h-[50vh] justify-center items-center">
-            <DuelingImages2 :playerSkin="playerSkins[playerChoice]" 
+            <DuelingImages :playerSkin="playerSkins[playerChoice]" 
             :ennemySkin="enemySkins[computerChoice]"/>
-            <ActionPannel @update-history="updateHistory"/>
+            <ActionPannel @update-history="updateHistory" :player="player" :enemy="enemy"/>
         </div>
 
         <HistoryLog :logs="logs"/>
@@ -35,7 +35,7 @@ import HitPoints from './HitPoints.vue'
 import TitleCard from './TitleCard.vue'
 import HistoryLog from './HistoryLog.vue'
 import CommonButton from './CommonButton.vue'
-import DuelingImages2 from './DuelingImages.vue'
+import DuelingImages from './DuelingImages.vue'
 import AppCopyrights from './AppCopyrights.vue'
 import { 
   barbeBlonde, 
@@ -97,7 +97,7 @@ switch (playerName) {
     case 'Jack Marrow':
         return { attaquer: '/images/sprites/JackMarrow/attack.gif', parer: '/images/sprites/JackMarrow/block.gif', moquer: '/images/sprites/JackMarrow/mock.gif', idle: '/images/sprites/JackMarrow/iddle.gif' }
     case 'Jungle Jane':
-        return { attaquer: '/images/sprites/JungleJane/attack.gif', parer: '/images/sprites/JungleJane/block.gif', moquer: '/images/sprites/JungleJane/mock.gif', idle: '/images/sprites/JungleJane/iddle.gif' }
+        return { 'attaquer*': '/images/sprites/JungleJane/attack.gif', parer: '/images/sprites/JungleJane/block.gif', moquer: '/images/sprites/JungleJane/mock.gif', idle: '/images/sprites/JungleJane/iddle.gif' }
     default:
         return { attaquer: '/images/sprites/attack.gif', parer: '/images/sprites/block.gif', moquer: '/images/sprites/mock.gif', idle: '/images/sprites/iddle.gif' }
 }
@@ -129,7 +129,16 @@ function updateHistory(fight) {
         playerCurrHealth.value--
     } else if (fight.result === 'Vous avez gagné !') {
         enemyCurrHealth.value--
+    } else if (fight.result === 'Vous avez perdu ! (attaque immunisée)') {
+        playerCurrHealth.value--
+    } else if (fight.result === 'Vous avez gagné ! (attaque immunisée)') {
+        enemyCurrHealth.value--
+    } else if (fight.result === 'Vous avez perdu ! (coup critique)') {
+        playerCurrHealth.value -= 2
+    } else if (fight.result === 'Vous avez gagné ! (coup critique)') {
+        enemyCurrHealth.value -= 2
     }
+
     if (playerCurrHealth.value === 0 || enemyCurrHealth.value === 0) {
         gameover.value = true
         endGameMessage.value = playerCurrHealth.value === 0 ? 'Vous avez perdu la partie !' : 'Vous avez gagné la partie !'
