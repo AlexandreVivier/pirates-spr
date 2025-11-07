@@ -122,27 +122,36 @@ const playerChoice = ref('idle')
 const computerChoice = ref('idle')
 
 function updateHistory(fight) {
-    logs.value.push(`Votre action : ${fight.playerChoice}, Action de l'adversaire : ${fight.computerChoice}, Résultat : ${fight.result}`)
-    playerChoice.value = fight.playerChoice
-    computerChoice.value = fight.computerChoice
-    if (fight.result === 'Vous avez perdu !') {
-        playerCurrHealth.value--
-    } else if (fight.result === 'Vous avez gagné !') {
-        enemyCurrHealth.value--
-    } else if (fight.result === 'Vous avez perdu ! (attaque immunisée)') {
-        playerCurrHealth.value--
-    } else if (fight.result === 'Vous avez gagné ! (attaque immunisée)') {
-        enemyCurrHealth.value--
-    } else if (fight.result === 'Vous avez perdu ! (coup critique)') {
-        playerCurrHealth.value -= 2
-    } else if (fight.result === 'Vous avez gagné ! (coup critique)') {
-        enemyCurrHealth.value -= 2
-    }
+  logs.value.push(`Votre action : ${fight.playerChoice}, Action de l'adversaire : ${fight.computerChoice}, Résultat : ${fight.result}`)
+  playerChoice.value = fight.playerChoice
+  computerChoice.value = fight.computerChoice
 
-    if (playerCurrHealth.value <= 0 || enemyCurrHealth.value <= 0) {
-        gameover.value = true
-        endGameMessage.value = playerCurrHealth.value <= 0 ? 'Vous avez perdu la partie !' : 'Vous avez gagné la partie !'
-    }
+  // Application des dégâts
+  if (fight.result === 'Vous avez perdu !') {
+    playerCurrHealth.value--
+  } else if (fight.result === 'Vous avez gagné !') {
+    enemyCurrHealth.value--
+  } else if (fight.result === 'Vous avez perdu ! (attaque immunisée)') {
+    playerCurrHealth.value--
+  } else if (fight.result === 'Vous avez gagné ! (attaque immunisée)') {
+    enemyCurrHealth.value--
+  } else if (fight.result === 'Vous avez perdu ! (coup critique)') {
+    playerCurrHealth.value -= 2
+  } else if (fight.result === 'Vous avez gagné ! (coup critique)') {
+    enemyCurrHealth.value -= 2
+  }
+
+  // Empêche les valeurs négatives
+  if (playerCurrHealth.value < 0) playerCurrHealth.value = 0
+  if (enemyCurrHealth.value < 0) enemyCurrHealth.value = 0
+
+  // Vérifie la fin du jeu
+  if (playerCurrHealth.value <= 0 || enemyCurrHealth.value <= 0) {
+    gameover.value = true
+    endGameMessage.value = playerCurrHealth.value <= 0
+      ? 'Vous avez perdu la partie !'
+      : 'Vous avez gagné la partie !'
+  }
 }
 </script>
 

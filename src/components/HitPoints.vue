@@ -8,18 +8,12 @@
                     {{ charaName }}
                 </span>
             </h2>
-            <div v-if="props.currHealth > 0" class="flex justify-center items-center mb-4 py-2 px-4">
-                <p v-for="n in props.currHealth" :key="n">
-                    ❤️
-                </p>
-                <p v-for="n in props.maxHealth - props.currHealth" :key="n" class="opacity-35">
-                    💔
-                </p>
+           <div v-if="safeHealth > 0" class="flex justify-center items-center mb-4 py-2 px-4">
+                <p v-for="n in safeHealth" :key="'heart' + n">❤️</p>
+                <p v-for="n in props.maxHealth - safeHealth" :key="'broken' + n" class="opacity-35">💔</p>
             </div>
             <div v-else class="flex justify-center items-center mb-4 py-2 px-4">
-                <p v-for="n in props.maxHealth" :key="n" class="opacity-35">
-                    💔
-                </p>
+                <p v-for="n in props.maxHealth" :key="'broken' + n" class="opacity-35">💔</p>
             </div>
         </div>
 </template>
@@ -33,8 +27,8 @@ const props = defineProps({
     maxHealth: Number,
     charaName: String
 })
-const actualHealth = computed(() => {
-    return props.currHealth
-})  
-console.log('Player name:', props.charaName, 'Current Health:', actualHealth.value)
+const safeHealth = computed(() => {
+  return Math.max(0, Math.min(props.currHealth, props.maxHealth))
+})
+
 </script>
