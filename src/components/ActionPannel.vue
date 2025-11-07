@@ -27,7 +27,6 @@ const choices = computed(() => props.player.availableActions)
 
 function rollFight(playerChoice) {
     const computerChoice = props.enemy.availableActions[Math.floor(Math.random() * props.enemy.availableActions.length)]
-    console.log(props.enemy.availableActions, props.enemy)
     const playerImmunities = props.player.immunities
     const enemyImmunities = props.enemy.immunities
     let result = ''

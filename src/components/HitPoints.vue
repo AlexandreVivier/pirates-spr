@@ -25,7 +25,7 @@
 </template>
 
 <script lang="js" setup>
-import { defineProps } from 'vue'
+import { computed, defineProps } from 'vue'
 
 const props = defineProps({
     label: String,
@@ -33,4 +33,8 @@ const props = defineProps({
     maxHealth: Number,
     charaName: String
 })
+const actualHealth = computed(() => {
+    return props.currHealth
+})  
+console.log('Player name:', props.charaName, 'Current Health:', actualHealth.value)
 </script>
