@@ -27,6 +27,7 @@ const choices = computed(() => props.player.availableActions)
 
 function rollFight(playerChoice) {
     const computerChoice = props.enemy.availableActions[Math.floor(Math.random() * props.enemy.availableActions.length)]
+    console.log(props.enemy.availableActions, props.enemy)
     const playerImmunities = props.player.immunities
     const enemyImmunities = props.enemy.immunities
     let result = ''
@@ -43,7 +44,10 @@ function rollFight(playerChoice) {
     } else if (
         (playerChoice === 'attaquer' && computerChoice === 'moquer') ||
         (playerChoice === 'parer' && computerChoice === 'attaquer') ||
-        (playerChoice === 'moquer' && computerChoice === 'parer')
+        (playerChoice === 'moquer' && computerChoice === 'parer') ||
+        (playerChoice === 'attaquer' && computerChoice === 'moquer*') ||
+        (playerChoice === 'parer' && computerChoice === 'attaquer*') ||
+        (playerChoice === 'moquer' && computerChoice === 'parer*')
     ) {
         result = 'Vous avez gagné !'
     } else if (

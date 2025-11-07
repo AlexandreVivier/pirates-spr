@@ -37,7 +37,7 @@ const jungleJane = new Character(
     3,
     '/images/portraits/jungle_jane.gif',
     {
-        attaquer: '/images/sprites/JungleJane/attack.gif',
+        'attaquer*': '/images/sprites/JungleJane/attack.gif',
         parer: '/images/sprites/JungleJane/block.gif',
         moquer: '/images/sprites/JungleJane/mock.gif',
         idle: '/images/sprites/JungleJane/iddle.gif'
