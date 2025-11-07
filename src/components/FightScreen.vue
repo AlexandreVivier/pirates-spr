@@ -139,9 +139,9 @@ function updateHistory(fight) {
         enemyCurrHealth.value -= 2
     }
 
-    if (playerCurrHealth.value === 0 || enemyCurrHealth.value === 0) {
+    if (playerCurrHealth.value <= 0 || enemyCurrHealth.value <= 0) {
         gameover.value = true
-        endGameMessage.value = playerCurrHealth.value === 0 ? 'Vous avez perdu la partie !' : 'Vous avez gagné la partie !'
+        endGameMessage.value = playerCurrHealth.value <= 0 ? 'Vous avez perdu la partie !' : 'Vous avez gagné la partie !'
     }
 }
 </script>

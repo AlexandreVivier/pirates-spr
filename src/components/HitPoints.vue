@@ -8,11 +8,16 @@
                     {{ charaName }}
                 </span>
             </h2>
-            <div class="flex justify-center items-center mb-4 py-2 px-4">
+            <div v-if="props.currHealth > 0" class="flex justify-center items-center mb-4 py-2 px-4">
                 <p v-for="n in props.currHealth" :key="n">
                     ❤️
                 </p>
                 <p v-for="n in props.maxHealth - props.currHealth" :key="n" class="opacity-35">
+                    💔
+                </p>
+            </div>
+            <div v-else class="flex justify-center items-center mb-4 py-2 px-4">
+                <p v-for="n in props.maxHealth" :key="n" class="opacity-35">
                     💔
                 </p>
             </div>
