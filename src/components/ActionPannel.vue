@@ -26,13 +26,12 @@ const emit = defineEmits(['update-history'])
 const choices = computed(() => props.player.availableActions)
 
 function rollFight(playerChoice) {
-    // const computerChoice = choices[Math.floor(Math.random() * choices.length)]
     const computerChoice = props.enemy.availableActions[Math.floor(Math.random() * props.enemy.availableActions.length)]
     const playerImmunities = props.player.immunities
     const enemyImmunities = props.enemy.immunities
     let result = ''
 
-    // Check for immunities
+    // Check for immunities first
     if (enemyImmunities.includes(playerChoice)) {
         result = 'Vous avez perdu ! (attaque immunisée)'
     } else if (playerImmunities.includes(computerChoice)) {
