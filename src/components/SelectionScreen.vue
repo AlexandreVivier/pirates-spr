@@ -3,15 +3,33 @@
     <TitleCard />
     <div class="flex flex-col justify-center items-center w-full mb-4">
         <p class="text-center italic text-2xl text-stone-500 pb-6 pixelify-sans">Sélectionnez votre pirate :</p>
-        <div class="flex justify-center items-center w-full md:w-1/2 mb-2">
-            <PortraitSelect :player="barbeBlonde" @click="playerName = barbeBlonde.name" :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === barbeBlonde.name }"/>
-            <PortraitSelect :player="francoisDeSurcoup" @click="playerName = francoisDeSurcoup.name" :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === francoisDeSurcoup.name }"/>
-            <PortraitSelect :player="jungleJane" @click="playerName = jungleJane.name" :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === jungleJane.name }"/>
-            <PortraitSelect :player="jackMarrow" @click="playerName = jackMarrow.name" :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === jackMarrow.name }"/>
-            <PortraitSelect :player="esperanzaPolvora" @click="playerName = esperanzaPolvora.name" :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === esperanzaPolvora.name }"/>
-        </div>
+      <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-1 justify-items-center w-full md:w-3/4 lg:w-1/2 mb-2">
+    <PortraitSelect :player="barbeBlonde"
+        @click="playerName = barbeBlonde.name"
+        :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === barbeBlonde.name }"
+    />
+    <PortraitSelect :player="francoisDeSurcoup"
+        @click="playerName = francoisDeSurcoup.name"
+        :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === francoisDeSurcoup.name }"
+    />
+    <PortraitSelect :player="jungleJane"
+        @click="playerName = jungleJane.name"
+        :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === jungleJane.name }"
+    />
+    <PortraitSelect :player="jackMarrow"
+        @click="playerName = jackMarrow.name"
+        :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === jackMarrow.name }"
+    />
+    <PortraitSelect :player="esperanzaPolvora"
+        @click="playerName = esperanzaPolvora.name"
+        :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === esperanzaPolvora.name }"
+    />
+</div>
+
         <div v-if="playerName!=''" class="w-full flex flex-col items-center">
-            <p class="text-center italic text-2xl text-stone-500 pb-6 pixelify-sans">Je choisis {{ playerName }} !</p>
+            <p class="text-center italic text-2xl text-stone-500 pb-6 pixelify-sans">Je choisis 
+                <span class="text-stone-950 dark:text-stone-100 font-bold">{{ playerName }} !</span>
+            </p>
             <CommonButton class="w-full md:w-1/4" label="Commencer à jouer !" :action="{ path: '/fight', query: { playerName } }"/>
         </div>
         <div v-if="playerBiography" class="w-full flex flex-col text-shadow-special items-center mt-8 px-4">

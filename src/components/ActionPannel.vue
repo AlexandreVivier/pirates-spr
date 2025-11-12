@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="flex flex-col justify-center items-center mb-4 w-full md:w-1/2 md:p-6 dark:text-stone-100">
         <div>
             <h2 class="font-semibold py-2 px-4 text-center w-full bastarda text-shadow-special text-xl md:text-2xl">Choisissez votre action :</h2>
@@ -9,6 +9,28 @@
             </div>
         </div>
     </div>
+</template> -->
+
+<template>
+  <div class="flex flex-col justify-center items-center mb-4 w-full md:w-2/3 lg:w-1/2 md:p-6 dark:text-stone-100">
+    <div>
+      <h2 class="font-semibold py-2 px-4 text-center w-full bastarda text-shadow-special text-xl md:text-2xl">
+        Choisissez votre action :
+      </h2>
+    </div>
+    <div
+      class="grid w-full gap-4 justify-items-center"
+             :class="[choices.length > 3 ? 'grid-cols-2 md:grid-cols-4 lg:grid-cols-4' : 'grid-cols-3']"
+    >
+      <div
+        class="w-full bg-green-500"
+        v-for="(choice, index) in choices"
+        :key="index"
+      >
+        <ActionButton @getChoice="rollFight" :action="choice" />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="js" setup>

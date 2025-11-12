@@ -3,7 +3,7 @@
     <div class="flex flex-col items-center w-full bg-stone-100 dark:bg-stone-900 h-screen">
         <TitleCard v-if="gameover === true"/>
 
-        <div class="flex justify-around items-center w-full">
+        <div class="flex justify-around items-center w-5/8 md:w-full">
             <HitPoints label="(Vous)" :currHealth="playerCurrHealth" :maxHealth="playerMaxHealth" :charaName="playerName"/>
             <HitPoints label="(Ennemi)" :currHealth="enemyCurrHealth" :maxHealth="enemyMaxHealth" :charaName="ennemyName" class="flex-row-reverse"/>
         </div>
