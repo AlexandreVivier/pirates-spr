@@ -79,6 +79,8 @@ const enemy = computed(() => {
             return jungleJane;
         case 'Jack Marrow':
             return jackMarrow;
+        case 'Esperanza Pólvora y Hacha':
+            return esperanzaPolvora;
         default:
             return francoisDeSurcoup;
     }
@@ -102,7 +104,7 @@ switch (playerName) {
     case 'Jungle Jane':
         return { 'attaquer*': '/images/sprites/JungleJane/attack.gif', parer: '/images/sprites/JungleJane/block.gif', moquer: '/images/sprites/JungleJane/mock.gif', idle: '/images/sprites/JungleJane/iddle.gif' }
     case 'Esperanza Pólvora y Hacha':
-        return { attaquer: '/images/sprites/EsperanzaPolvora/attack.gif', parer: '/images/sprites/EsperanzaPolvora/block.gif', moquer: '/images/sprites/EsperanzaPolvora/mock.gif', idle: '/images/sprites/EsperanzaPolvora/iddle.gif', threat: '/images/sprites/EsperanzaPolvora/threat.gif' }
+        return { attaquer: '/images/sprites/EsperanzaPolvora/attack.gif', parer: '/images/sprites/EsperanzaPolvora/block.gif', moquer: '/images/sprites/EsperanzaPolvora/mock.gif', idle: '/images/sprites/EsperanzaPolvora/iddle.gif', menacer: '/images/sprites/EsperanzaPolvora/threat.gif' }
     default:
         return { attaquer: '/images/sprites/attack.gif', parer: '/images/sprites/block.gif', moquer: '/images/sprites/mock.gif', idle: '/images/sprites/iddle.gif' }
 }
@@ -119,7 +121,7 @@ switch (ennemyName) {
     case 'Jungle Jane':
         return { 'attaquer*': '/images/sprites/JungleJane/attack.gif', parer: '/images/sprites/JungleJane/block.gif', moquer: '/images/sprites/JungleJane/mock.gif', idle: '/images/sprites/JungleJane/iddle.gif' }
     case 'Esperanza Pólvora y Hacha':
-        return { attaquer: '/images/sprites/EsperanzaPolvora/attack.gif', parer: '/images/sprites/EsperanzaPolvora/block.gif', moquer: '/images/sprites/EsperanzaPolvora/mock.gif', idle: '/images/sprites/EsperanzaPolvora/iddle.gif', threat: '/images/sprites/EsperanzaPolvora/threat.gif' }
+        return { attaquer: '/images/sprites/EsperanzaPolvora/attack.gif', parer: '/images/sprites/EsperanzaPolvora/block.gif', moquer: '/images/sprites/EsperanzaPolvora/mock.gif', idle: '/images/sprites/EsperanzaPolvora/iddle.gif', menacer: '/images/sprites/EsperanzaPolvora/threat.gif' }
     default:
         return { attaquer: '/images/sprites/attack.gif', parer: '/images/sprites/blockE.gif', moquer: '/images/sprites/mockE.gif', idle: '/images/sprites/iddleE.gif' }
 }
