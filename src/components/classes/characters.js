@@ -82,10 +82,29 @@ const francoisDeSurcoup = new Character(
     'François de Surcoup possède 5 points de vie au lieu de 3.'
 );
 
+const esperanzaPolvora = new Character(
+    'Esperanza Pólvora y Hacha',
+    3,
+    3,
+    '/images/portraits/esperanza_polvora.gif',
+    {
+        attaquer: '/images/sprites/EsperanzaPolvora/attack.gif',
+        parer: '/images/sprites/EsperanzaPolvora/block.gif',
+        moquer: '/images/sprites/EsperanzaPolvora/mock.gif',
+        idle: '/images/sprites/EsperanzaPolvora/iddle.gif',
+        threat: '/images/sprites/EsperanzaPolvora/threat.gif'
+    },
+    ['attaquer', 'parer', 'moquer', 'menacer'],
+    [],
+    'Fière et redoutable, Esperanza manie aussi bien la poudre que la hache, ce qui fait d\'elle une adversaire redoutable sur tous les fronts.',
+    'Esperanza Pólvora y Hacha peut "menacer", ce qui bat la "moquerie" et "parer".'
+);
+
 export {
     Character,
     barbeBlonde,
     jungleJane,
     jackMarrow,
-    francoisDeSurcoup
+    francoisDeSurcoup,
+    esperanzaPolvora
 };
