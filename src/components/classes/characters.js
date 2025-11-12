@@ -26,7 +26,7 @@ const barbeBlonde = new Character(
     },
     ['attaquer', 'parer', 'moquer'],
     [],
-    'Légendenaire capitaine pirate à la barbe aussi dorée que sa fortune. Mais à mesure qu\'il vieillit et grisonne, sa trésorerie se tarit, ce qui ne fait qu\'aggraver sa cupidité...',
+    'Légendaire capitaine pirate à la barbe aussi dorée que sa fortune. Mais à mesure qu\'il vieillit et grisonne, sa trésorerie se tarit, ce qui ne fait qu\'aggraver sa cupidité...',
     // 'Barbe-blonde gagne le double de pièces d\'or si il gagne un combat.'
     'Barbe-blonde n\'a pas de capacité spéciale pour l\'instant.'
 );
@@ -92,11 +92,11 @@ const esperanzaPolvora = new Character(
         parer: '/images/sprites/EsperanzaPolvora/block.gif',
         moquer: '/images/sprites/EsperanzaPolvora/mock.gif',
         idle: '/images/sprites/EsperanzaPolvora/iddle.gif',
-        threat: '/images/sprites/EsperanzaPolvora/threat.gif'
+        menacer: '/images/sprites/EsperanzaPolvora/threat.gif'
     },
     ['attaquer', 'parer', 'moquer', 'menacer'],
     [],
-    'Fière et redoutable, Esperanza manie aussi bien la poudre que la hache, ce qui fait d\'elle une adversaire redoutable sur tous les fronts.',
+    'Indécise entre la hache et la poudre, Esperanza est tout aussi suceptible de vous envoyer les deux à la fois ! Et suceptible tout court, d\'ailleurs...',
     'Esperanza Pólvora y Hacha peut "menacer", ce qui bat la "moquerie" et "parer".'
 );
 
