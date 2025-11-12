@@ -46,7 +46,12 @@ function rollFight(playerChoice) {
         (playerChoice === 'moquer' && computerChoice === 'parer') ||
         (playerChoice === 'attaquer' && computerChoice === 'moquer*') ||
         (playerChoice === 'parer' && computerChoice === 'attaquer*') ||
-        (playerChoice === 'moquer' && computerChoice === 'parer*')
+        (playerChoice === 'moquer' && computerChoice === 'parer*') ||
+        (playerChoice === 'menacer' && computerChoice === 'moquer') ||
+        (playerChoice === 'menacer' && computerChoice === 'moquer*') ||
+        (playerChoice === 'menacer' && computerChoice === 'parer') ||
+        (playerChoice === 'menacer' && computerChoice === 'parer*') ||
+        (playerChoice === 'attaquer' && computerChoice === 'menacer')
     ) {
         result = 'Vous avez gagné !'
     } else if (
@@ -55,7 +60,12 @@ function rollFight(playerChoice) {
         (computerChoice === 'moquer' && playerChoice === 'parer') ||
         (computerChoice === 'attaquer' && playerChoice === 'moquer*') ||
         (computerChoice === 'parer' && playerChoice === 'attaquer*') ||
-        (computerChoice === 'moquer' && playerChoice === 'parer*') 
+        (computerChoice === 'moquer' && playerChoice === 'parer*') ||
+        (computerChoice === 'menacer' && playerChoice === 'moquer') ||
+        (computerChoice === 'menacer' && playerChoice === 'moquer*') ||
+        (computerChoice === 'menacer' && playerChoice === 'parer') ||
+        (computerChoice === 'menacer' && playerChoice === 'parer*') ||
+        (computerChoice === 'attaquer' && playerChoice === 'menacer')
         ) {
         result = 'Vous avez perdu !'
     } else if (
@@ -64,7 +74,8 @@ function rollFight(playerChoice) {
         (playerChoice === 'moquer*' && computerChoice === 'parer') ||
         (playerChoice === 'attaquer*' && computerChoice === 'moquer*') ||
         (playerChoice === 'parer*' && computerChoice === 'attaquer*') ||
-        (playerChoice === 'moquer*' && computerChoice === 'parer*')
+        (playerChoice === 'moquer*' && computerChoice === 'parer*') ||
+        (playerChoice === 'attaquer*' && computerChoice === 'menacer') 
     ) {
         result = 'Vous avez gagné ! (coup critique)'
     } else if (
@@ -73,7 +84,8 @@ function rollFight(playerChoice) {
         (computerChoice === 'moquer*' && playerChoice === 'parer') ||
         (computerChoice === 'attaquer*' && playerChoice === 'moquer*') ||
         (computerChoice === 'parer*' && playerChoice === 'attaquer*') ||
-        (computerChoice === 'moquer*' && playerChoice === 'parer*')
+        (computerChoice === 'moquer*' && playerChoice === 'parer*') ||
+        (computerChoice === 'attaquer*' && playerChoice === 'menacer') 
         ) {
         result = 'Vous avez perdu ! (coup critique)'
     } else {

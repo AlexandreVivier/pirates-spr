@@ -41,13 +41,14 @@ import {
   barbeBlonde, 
   francoisDeSurcoup, 
   jungleJane, 
-  jackMarrow 
+  jackMarrow,
+  esperanzaPolvora
 } from './classes/characters.js'
 
 const route = useRoute()
 
 const playerName = route.query.playerName || 'Barbe-blonde'
-const allNames = ['Barbe-blonde', 'François de Surcoup', 'Jack Marrow', 'Jungle Jane']
+const allNames = ['Barbe-blonde', 'François de Surcoup', 'Jack Marrow', 'Jungle Jane', 'Esperanza Pólvora y Hacha']
 const ennemyName = allNames.filter(name => name !== playerName)[Math.floor(Math.random() * (allNames.length - 1))]
 // console.log('Ennemy selected:', ennemyName, 'against player:', playerName)
 
@@ -61,6 +62,8 @@ const player = computed(() => {
             return jungleJane;
         case 'Jack Marrow':
             return jackMarrow;
+        case 'Esperanza Pólvora y Hacha':
+            return esperanzaPolvora;
         default:
             return barbeBlonde;
     }

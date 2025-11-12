@@ -8,6 +8,7 @@
             <PortraitSelect :player="francoisDeSurcoup" @click="playerName = francoisDeSurcoup.name" :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === francoisDeSurcoup.name }"/>
             <PortraitSelect :player="jungleJane" @click="playerName = jungleJane.name" :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === jungleJane.name }"/>
             <PortraitSelect :player="jackMarrow" @click="playerName = jackMarrow.name" :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === jackMarrow.name }"/>
+            <PortraitSelect :player="esperanzaPolvora" @click="playerName = esperanzaPolvora.name" :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === esperanzaPolvora.name }"/>
         </div>
         <div v-if="playerName!=''" class="w-full flex flex-col items-center">
             <p class="text-center italic text-2xl text-stone-500 pb-6 pixelify-sans">Je choisis {{ playerName }} !</p>
@@ -33,7 +34,8 @@ import {
   barbeBlonde, 
   francoisDeSurcoup, 
   jungleJane, 
-  jackMarrow 
+  jackMarrow,
+  esperanzaPolvora
 } from './classes/characters.js'
 
 const playerName = ref('') 
@@ -48,6 +50,8 @@ const playerBiography = computed(() => {
             return jungleJane.biography;
         case 'Jack Marrow':
             return jackMarrow.biography;
+        case 'Esperanza Pólvora y Hacha':
+            return esperanzaPolvora.biography;
         default:
             return '';
     }
@@ -63,6 +67,8 @@ const playerDescription = computed(() => {
             return jungleJane.description;
         case 'Jack Marrow':
             return jackMarrow.description;
+        case 'Esperanza Pólvora y Hacha':
+            return esperanzaPolvora.description;
         default:
             return '';
     }

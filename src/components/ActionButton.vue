@@ -27,6 +27,8 @@ switch (action) {
         return '/images/icons/block.gif'
     case 'moquer*':
         return '/images/icons/mock.gif'
+    case 'menacer':
+        return '/images/icons/tronchedecake.gif'
     default:
         return '/images/icons/tronchedecake.gif'
     }

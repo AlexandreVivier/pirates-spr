@@ -12,10 +12,12 @@
 </template>
 
 <script lang="js" setup>
-import { defineProps } from 'vue'
+import { computed, defineProps } from 'vue'
 
-defineProps({
+const props = defineProps({
     playerSkin: String,
     ennemySkin: String
 })
+const skin = computed(() => props.playerSkin);
+console.log('Player Skin:', skin.value);
 </script>
