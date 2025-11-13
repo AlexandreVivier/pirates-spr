@@ -50,41 +50,10 @@ const route = useRoute()
 const playerName = route.query.playerName || 'Barbe-blonde'
 const allNames = ['Barbe-blonde', 'François de Surcoup', 'Jack Marrow', 'Jungle Jane', 'Esperanza Pólvora y Hacha']
 const ennemyName = allNames.filter(name => name !== playerName)[Math.floor(Math.random() * (allNames.length - 1))]
-// console.log('Ennemy selected:', ennemyName, 'against player:', playerName)
 
-const player = computed(() => {
-    switch (playerName) {
-        case 'Barbe-blonde':
-            return barbeBlonde;
-        case 'François de Surcoup':
-            return francoisDeSurcoup;
-        case 'Jungle Jane':
-            return jungleJane;
-        case 'Jack Marrow':
-            return jackMarrow;
-        case 'Esperanza Pólvora y Hacha':
-            return esperanzaPolvora;
-        default:
-            return barbeBlonde;
-    }
-});
-
-const enemy = computed(() => {
-    switch (ennemyName) {
-        case 'Barbe-blonde':
-            return barbeBlonde;
-        case 'François de Surcoup':
-            return francoisDeSurcoup;
-        case 'Jungle Jane':
-            return jungleJane;
-        case 'Jack Marrow':
-            return jackMarrow;
-        case 'Esperanza Pólvora y Hacha':
-            return esperanzaPolvora;
-        default:
-            return francoisDeSurcoup;
-    }
-});
+const player = computed(() => getCharacterByName(playerName));
+const enemy = computed(() => getCharacterByName(ennemyName));
+          
 const playerCurrHealth = ref(player.value.currHealth)
 const enemyCurrHealth = ref(enemy.value.currHealth)
 const playerMaxHealth = ref(player.value.maxHealth)
@@ -93,42 +62,28 @@ const logs = ref([])
 const gameover = ref(false)
 const endGameMessage = ref('')
 
-const playerSkins = computed(() => {
-switch (playerName) {
-    case 'Barbe-blonde':
-        return { attaquer: '/images/sprites/Barbe-blonde/attack.gif', parer: '/images/sprites/Barbe-blonde/block.gif', moquer: '/images/sprites/Barbe-blonde/mock.gif', idle: '/images/sprites/Barbe-blonde/iddle.gif' }
-    case 'François de Surcoup':
-        return { attaquer: '/images/sprites/FrancoisDeSurcoup/attack.gif', parer: '/images/sprites/FrancoisDeSurcoup/block.gif', moquer: '/images/sprites/FrancoisDeSurcoup/mock.gif', idle: '/images/sprites/FrancoisDeSurcoup/iddle.gif' }
-    case 'Jack Marrow':
-        return { attaquer: '/images/sprites/JackMarrow/attack.gif', parer: '/images/sprites/JackMarrow/block.gif', moquer: '/images/sprites/JackMarrow/mock.gif', idle: '/images/sprites/JackMarrow/iddle.gif' }
-    case 'Jungle Jane':
-        return { 'attaquer*': '/images/sprites/JungleJane/attack.gif', parer: '/images/sprites/JungleJane/block.gif', moquer: '/images/sprites/JungleJane/mock.gif', idle: '/images/sprites/JungleJane/iddle.gif' }
-    case 'Esperanza Pólvora y Hacha':
-        return { attaquer: '/images/sprites/EsperanzaPolvora/attack.gif', parer: '/images/sprites/EsperanzaPolvora/block.gif', moquer: '/images/sprites/EsperanzaPolvora/mock.gif', idle: '/images/sprites/EsperanzaPolvora/iddle.gif', menacer: '/images/sprites/EsperanzaPolvora/threat.gif' }
-    default:
-        return { attaquer: '/images/sprites/attack.gif', parer: '/images/sprites/block.gif', moquer: '/images/sprites/mock.gif', idle: '/images/sprites/iddle.gif' }
-}
-})
-
-const enemySkins = computed(() => {
-switch (ennemyName) {
-    case 'Barbe-blonde':
-        return { attaquer: '/images/sprites/Barbe-blonde/attack.gif', parer: '/images/sprites/Barbe-blonde/block.gif', moquer: '/images/sprites/Barbe-blonde/mock.gif', idle: '/images/sprites/Barbe-blonde/iddle.gif' }
-    case 'François de Surcoup':
-        return { attaquer: '/images/sprites/FrancoisDeSurcoup/attack.gif', parer: '/images/sprites/FrancoisDeSurcoup/block.gif', moquer: '/images/sprites/FrancoisDeSurcoup/mock.gif', idle: '/images/sprites/FrancoisDeSurcoup/iddle.gif' }
-    case 'Jack Marrow':
-        return { attaquer: '/images/sprites/JackMarrow/attack.gif', parer: '/images/sprites/JackMarrow/block.gif', moquer: '/images/sprites/JackMarrow/mock.gif', idle: '/images/sprites/JackMarrow/iddle.gif' }
-    case 'Jungle Jane':
-        return { 'attaquer*': '/images/sprites/JungleJane/attack.gif', parer: '/images/sprites/JungleJane/block.gif', moquer: '/images/sprites/JungleJane/mock.gif', idle: '/images/sprites/JungleJane/iddle.gif' }
-    case 'Esperanza Pólvora y Hacha':
-        return { attaquer: '/images/sprites/EsperanzaPolvora/attack.gif', parer: '/images/sprites/EsperanzaPolvora/block.gif', moquer: '/images/sprites/EsperanzaPolvora/mock.gif', idle: '/images/sprites/EsperanzaPolvora/iddle.gif', menacer: '/images/sprites/EsperanzaPolvora/threat.gif' }
-    default:
-        return { attaquer: '/images/sprites/attack.gif', parer: '/images/sprites/blockE.gif', moquer: '/images/sprites/mockE.gif', idle: '/images/sprites/iddleE.gif' }
-}
-})
+const playerSkins = computed(() => player.value.skins)
+const enemySkins = computed(() => enemy.value.skins)
 
 const playerChoice = ref('idle')
 const computerChoice = ref('idle')
+
+function getCharacterByName(name) {
+  switch (name) {
+    case 'Barbe-blonde':
+      return barbeBlonde;
+    case 'François de Surcoup':
+      return francoisDeSurcoup;
+    case 'Jungle Jane':
+      return jungleJane;
+    case 'Jack Marrow':
+      return jackMarrow;
+    case 'Esperanza Pólvora y Hacha':
+      return esperanzaPolvora;
+    default:
+      return null;
+  }
+}
 
 function updateHistory(fight) {
   logs.value.push(`Votre action : ${fight.playerChoice}, Action de l'adversaire : ${fight.computerChoice}, Résultat : ${fight.result}`)
@@ -140,14 +95,12 @@ function updateHistory(fight) {
     playerCurrHealth.value--
   } else if (fight.result === 'Vous avez gagné !') {
     enemyCurrHealth.value--
-  } else if (fight.result === 'Vous avez perdu ! (attaque immunisée)') {
-    playerCurrHealth.value--
-  } else if (fight.result === 'Vous avez gagné ! (attaque immunisée)') {
-    enemyCurrHealth.value--
   } else if (fight.result === 'Vous avez perdu ! (coup critique)') {
     playerCurrHealth.value -= 2
   } else if (fight.result === 'Vous avez gagné ! (coup critique)') {
     enemyCurrHealth.value -= 2
+  } else {
+    // Pas de changement de points de vie en cas d'égalité ou d'attaque immunisée
   }
 
   // Empêche les valeurs négatives

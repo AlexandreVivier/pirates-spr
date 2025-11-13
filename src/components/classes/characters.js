@@ -33,8 +33,8 @@ const barbeBlonde = new Character(
 
 const jungleJane = new Character(
     'Jungle Jane',
-    3,
-    3,
+    2,
+    2,
     '/images/portraits/jungle_jane.gif',
     {
         'attaquer*': '/images/sprites/JungleJane/attack.gif',
@@ -50,8 +50,8 @@ const jungleJane = new Character(
 
 const jackMarrow = new Character(
     'Jack Marrow',
-    3,
-    3,
+    2,
+    2,
     '/images/portraits/jack_marrow.gif',
     {
         attaquer: '/images/sprites/JackMarrow/attack.gif',
@@ -84,8 +84,8 @@ const francoisDeSurcoup = new Character(
 
 const esperanzaPolvora = new Character(
     'Esperanza Pólvora y Hacha',
-    3,
-    3,
+    2,
+    2,
     '/images/portraits/esperanza_polvora.gif',
     {
         attaquer: '/images/sprites/EsperanzaPolvora/attack.gif',

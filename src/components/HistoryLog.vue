@@ -10,8 +10,9 @@
                 :key="index"
             >
                 <span v-if="log.includes('Egalité')">{{ log }}</span>
-                <span v-else-if="log.includes('gagné')" class="text-green-500">{{ log }}</span>
-                <span v-else class="text-red-500">{{ log }}</span>
+                <span v-else-if="log.includes('gagné')" class="text-green-500" :class="[log.includes('critique')?'text-green-600 font-bold':'']">{{ log }}</span>
+                <span v-else-if="log.includes('Aucun effet')" class="text-yellow-500">{{ log }}</span>
+                <span v-else-if="log.includes('perdu')" class="text-red-500" :class="[log.includes('critique')?'text-red-600 font-bold':'']">{{ log }}</span>
                 <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
             </li>
         </ul>

@@ -55,9 +55,9 @@ function rollFight(playerChoice) {
 
     // Check for immunities first
     if (enemyImmunities.includes(playerChoice)) {
-        result = 'Vous avez perdu ! (attaque immunisée)'
+        result = 'Aucun effet sur l\'ennemi !'
     } else if (playerImmunities.includes(computerChoice)) {
-        result = 'Vous avez gagné ! (attaque immunisée)'
+        result = 'Aucun effet sur vous !'
     }
     // fight logic
      else if (playerChoice === computerChoice) {
