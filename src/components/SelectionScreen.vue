@@ -2,30 +2,31 @@
 <div class="flex flex-col items-center w-screen bg-stone-100 dark:bg-stone-900 w-full h-screen py-12 gap-8">
     <TitleCard />
     <div class="flex flex-col justify-center items-center w-full mb-4">
-        <p class="text-center italic text-2xl text-stone-500 pb-6 pixelify-sans">Sélectionnez votre pirate :</p>
-      <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-1 justify-items-center w-full md:w-3/4 lg:w-1/2 mb-2">
-    <PortraitSelect :player="barbeBlonde"
-        @click="playerName = barbeBlonde.name"
-        :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === barbeBlonde.name }"
-    />
-    <PortraitSelect :player="francoisDeSurcoup"
-        @click="playerName = francoisDeSurcoup.name"
-        :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === francoisDeSurcoup.name }"
-    />
-    <PortraitSelect :player="jungleJane"
-        @click="playerName = jungleJane.name"
-        :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === jungleJane.name }"
-    />
-    <PortraitSelect :player="jackMarrow"
-        @click="playerName = jackMarrow.name"
-        :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === jackMarrow.name }"
-    />
-    <PortraitSelect :player="esperanzaPolvora"
-        @click="playerName = esperanzaPolvora.name"
-        :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === esperanzaPolvora.name }"
-    />
-</div>
-
+        <p class="text-center italic text-2xl text-stone-500 pb-6 pixelify-sans">
+            Sélectionnez votre pirate :
+        </p>
+            <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-1 justify-items-center w-full md:w-3/4 lg:w-1/2 mb-2">
+                <PortraitSelect :player="barbeBlonde"
+                    @click="playerName = barbeBlonde.name"
+                    :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === barbeBlonde.name }"
+                />
+                <PortraitSelect :player="francoisDeSurcoup"
+                    @click="playerName = francoisDeSurcoup.name"
+                    :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === francoisDeSurcoup.name }"
+                />
+                <PortraitSelect :player="jungleJane"
+                    @click="playerName = jungleJane.name"
+                    :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === jungleJane.name }"
+                />
+                <PortraitSelect :player="jackMarrow"
+                    @click="playerName = jackMarrow.name"
+                    :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === jackMarrow.name }"
+                />
+                <PortraitSelect :player="esperanzaPolvora"
+                    @click="playerName = esperanzaPolvora.name"
+                    :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': playerName === esperanzaPolvora.name }"
+                />
+            </div>
         <div v-if="playerName!=''" class="w-full flex flex-col items-center">
             <p class="text-center italic text-2xl text-stone-500 pb-6 pixelify-sans">Je choisis 
                 <span class="text-stone-950 dark:text-stone-100 font-bold">{{ playerName }} !</span>
@@ -93,7 +94,6 @@ const playerDescription = computed(() => {
 });
 </script>
 
-
 <style>
 .bastarda {
     font-family: 'bastarda';
@@ -101,11 +101,9 @@ const playerDescription = computed(() => {
 .jacquard12 {
     font-family: 'jacquard12';
 }
-
 .pixelify-sans {
     font-family: 'pixelify-sans';
 }
-
 .text-shadow-special {
     text-shadow: 2px 2px 0px rgb(130, 66, 66);
 }

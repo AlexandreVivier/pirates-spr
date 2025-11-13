@@ -31,7 +31,6 @@ const props = defineProps({
 
 const emit = defineEmits(['update-history'])
 
-// const choices = ['attaquer', 'parer', 'moquer']
 const choices = computed(() => props.player.availableActions)
 
 function rollFight(playerChoice) {

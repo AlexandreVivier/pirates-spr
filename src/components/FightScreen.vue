@@ -2,25 +2,21 @@
     <div class="bg-stone-100 dark:bg-stone-900 min-h-screen">
     <div class="flex flex-col items-center w-full bg-stone-100 dark:bg-stone-900 h-screen">
         <TitleCard v-if="gameover === true"/>
-
         <div class="flex justify-around items-center w-5/8 md:w-full">
             <HitPoints label="(Vous)" :currHealth="playerCurrHealth" :maxHealth="playerMaxHealth" :charaName="playerName"/>
             <HitPoints label="(Ennemi)" :currHealth="enemyCurrHealth" :maxHealth="enemyMaxHealth" :charaName="ennemyName" class="flex-row-reverse"/>
         </div>
-
         <div v-show="gameover === true" class="flex flex-col justify-center items-center mb-4">
             <img v-if="endGameMessage=== 'Vous avez perdu la partie !'" :src="enemy.portrait" alt="Game Over" class="w-32 bg-gradient-to-b from-red-950 via-red-500 to-red-950 border-2 border-stone-500 h-32 mb-4"/>
             <img v-else :src="player.portrait" alt="Victory" class="w-32 h-32 bg-gradient-to-b from-green-950 via-green-500 to-green-950 border-2 border-stone-500 mb-4"/>
             <p class="text-center italic text-2xl bastarda pb-6" :class="endGameMessage === 'Vous avez perdu la partie !' ? 'text-red-500' : 'text-green-500'">{{ endGameMessage }}</p>
             <CommonButton label="Rejouer ?" action="/selection"/>
         </div>
-
         <div v-if="gameover === false" class="flex flex-col w-full min-h-[50vh] justify-center items-center">
             <DuelingImages :playerSkin="playerSkins[playerChoice]" 
             :ennemySkin="enemySkins[computerChoice]"/>
             <ActionPannel @update-history="updateHistory" :player="player" :enemy="enemy"/>
         </div>
-
         <HistoryLog :logs="logs"/>
         <AppCopyrights />
     </div>
