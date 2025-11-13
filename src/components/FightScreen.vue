@@ -100,7 +100,7 @@ function updateHistory(fight) {
   } else if (fight.result === 'Vous avez gagné ! (coup critique)') {
     enemyCurrHealth.value -= 2
   } else {
-    // Pas de changement de points de vie en cas d'égalité ou d'attaque immunisée
+    // rien
   }
 
   // Empêche les valeurs négatives
@@ -124,11 +124,9 @@ function updateHistory(fight) {
 .jacquard12 {
     font-family: 'jacquard12';
 }
-
 .pixelify-sans {
     font-family: 'pixelify-sans';
 }
-
 .text-stroke-3 {
     -webkit-text-stroke:0.02em rgb(130, 66, 66);
 }

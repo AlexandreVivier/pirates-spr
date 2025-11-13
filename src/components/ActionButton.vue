@@ -1,7 +1,7 @@
 <template>
-    <button class="flex flex-col items-center pixelify-sans bg-stone-200 hover:bg-stone-300 dark:bg-stone-800 dark:hover:bg-stone-700 dark:text-stone-100 w-full text-stone-800 text-lg md:text-xl uppercase font-serif text-stroke-3 font-semibold py-2 md:pt-6 md:px-4 border border-gray-400 rounded shadow" 
+    <button class="flex flex-col items-center bg-stone-200 hover:bg-stone-300 dark:bg-stone-800 dark:hover:bg-stone-700 dark:text-stone-100 w-full text-stone-800 py-2 md:pt-6 md:px-4 border border-gray-400 shadow-button" 
     @click="$emit('getChoice', action)">
-        {{ action }}
+       <span class="pixelify-sans uppercase text-lg md:text-xl lg:text-2xl text-stroke-3">{{ action }}</span>
          <img :src="renderImage(action)" alt="emoji" class="hidden md:inline-block md:h-12" />
     </button>
 </template>
@@ -40,5 +40,20 @@ defineEmits(['getChoice'])
 <style>
 .pixelify-sans {
     font-family: 'pixelify-sans';
+}
+.bastarda {
+    font-family: 'Bastarda';
+}
+.jacquard12 {
+    font-family: 'jacquard12';
+}
+.text-shadow-special {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.shadow-button {
+    box-shadow: 4px 4px 1px rgba(162, 67, 67, 0.5);
+}
+.shadow-button:hover {
+    box-shadow: 4px 4px 4px rgba(120, 167, 127, 0.5);
 }
 </style>
