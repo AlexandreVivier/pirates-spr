@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-stone-100 dark:bg-stone-900 min-h-screen h-full">
+    <div class="bg-stone-100 dark:bg-stone-900 min-h-screen h-full px-1">
     <div class="flex flex-col items-center w-full bg-stone-100 dark:bg-stone-900 h-screen">
         <TitleCard v-if="gameover === true"/>
         <div class="flex justify-around items-center w-5/8 md:w-full">
