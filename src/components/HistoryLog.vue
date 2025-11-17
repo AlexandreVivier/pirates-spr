@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col justify-center items-center mb-4 bg-stone-200 dark:bg-stone-800 w-full md:w-1/2 py-2 px-4 border border-gray-400 rounded shadow">
+    <div class="flex flex-col justify-center items-center pb-4 bg-stone-200 dark:bg-stone-800 w-full md:w-1/2 pt-2 px-4 border border-gray-400 rounded shadow">
         <h2 class="font-semibold jacquard12 text-2xl py-2 border border-gray-300 px-4 rounded shadow text-center bg-stone-100 dark:text-stone-100 dark:bg-stone-900 w-full">
             Actions précédentes :
         </h2>
