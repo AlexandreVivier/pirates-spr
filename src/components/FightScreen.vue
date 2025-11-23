@@ -10,7 +10,6 @@
             <img v-if="endGameMessage=== 'Vous avez perdu la partie !'" :src="enemy.portrait" alt="Game Over" class="w-32 bg-gradient-to-b from-red-950 via-red-500 to-red-950 border-2 border-stone-500 h-32 mb-4"/>
             <img v-else :src="player.portrait" alt="Victory" class="w-32 h-32 bg-gradient-to-b from-green-950 via-green-500 to-green-950 border-2 border-stone-500 mb-4"/>
             <p class="text-center italic text-2xl bastarda pb-6" :class="endGameMessage === 'Vous avez perdu la partie !' ? 'text-red-500' : 'text-green-500'">{{ endGameMessage }}</p>
-            <!-- <CommonButton label="Rejouer ?" action="/selection"/> -->
             <CommonButton label="Rejouer ?" :action="{ path: '/', query: {} }"/>
         </div>
         <div v-if="gameover === false" class="flex flex-col w-full min-h-[50vh] justify-center items-center">
@@ -92,9 +91,9 @@ function updateHistory(fight) {
     playerCurrHealth.value--
   } else if (fight.result === 'Vous avez gagné !') {
     enemyCurrHealth.value--
-  } else if (fight.result === 'Vous avez perdu ! (coup critique)') {
+  } else if (fight.result === 'Vous avez perdu ! ( coup critique )') {
     playerCurrHealth.value -= 2
-  } else if (fight.result === 'Vous avez gagné ! (coup critique)') {
+  } else if (fight.result === 'Vous avez gagné ! ( coup critique )') {
     enemyCurrHealth.value -= 2
   } else {
     // rien
