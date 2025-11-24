@@ -9,9 +9,11 @@
             <CommonButton class="w-full md:w-1/4" label="Mode aventure" :action="{ path: '/adventure' }"/>
         </div>
     </div>
+    <AppCopyrights />
 </template>
 
 <script lang="js" setup>
-import CommonButton from './CommonButton.vue';
+import CommonButton from './CommonButton.vue'
 import TitleCard from './TitleCard.vue'
+import AppCopyrights from './AppCopyrights.vue'
 </script>
