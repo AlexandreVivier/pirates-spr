@@ -5,11 +5,11 @@
             <p class="text-center italic text-2xl text-stone-500 pb-6 pixelify-sans">
                 Sélectionnez votre mode de jeu :
             </p>
-            <CommonButton class="w-full md:w-1/4 mb-4" label="Partie simple" :action="{ path: '/selection' }"/>
-            <CommonButton class="w-full md:w-1/4" label="Mode aventure" :action="{ path: '/adventure' }"/>
+            <CommonButton class="w-full md:w-1/4 mb-4" label="Partie simple" :action="{ path: '/simple' }"/>
+            <CommonButton class="w-full md:w-1/4" label="Aventure" :action="{ path: '/adventure' }"/>
         </div>
-    </div>
     <AppCopyrights />
+    </div>
 </template>
 
 <script lang="js" setup>
