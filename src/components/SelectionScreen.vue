@@ -2,6 +2,7 @@
 <div class="flex flex-col items-center w-screen bg-stone-100 dark:bg-stone-900 w-full min-h-screen h-full px-2 py-12 gap-8">
     <TitleCard />
     <div class="flex flex-col justify-center items-center w-full mb-4">
+        <h3 class=" py-2 px-4 text-center w-full jacquard12 text-stroke-5 text-xl md:text-4xl text-green-900 mb-6">{{ modeTitle }}</h3>
         <p class="text-center italic text-2xl text-stone-500 pb-6 pixelify-sans">
             Sélectionnez votre pirate :
         </p>
@@ -43,7 +44,7 @@
 </template>
 
 <script lang="js" setup>
-import { ref } from 'vue'
+import { ref, defineProps } from 'vue'
 import { computed } from 'vue'
 import TitleCard from './TitleCard.vue'
 import CommonButton from './CommonButton.vue'
@@ -59,6 +60,12 @@ import {
 
 const playerName = ref('') 
 
+const props = defineProps({
+    mode: String
+})
+const modeTitle = computed(() => props.mode === 'aventure' ? 'Aventure' : 'Partie simple');
+
+console.log('Selected mode:', props.mode);
 const playerBiography = computed(() => {
     switch (playerName.value) {
         case 'Barbe-blonde':
@@ -109,5 +116,9 @@ const playerDescription = computed(() => {
 }
 .text-stroke-3 {
     -webkit-text-stroke:0.02em rgb(130, 66, 66);
+}
+
+.text-stroke-5 {
+    -webkit-text-stroke:0.01em rgb(115, 218, 75);
 }
 </style>

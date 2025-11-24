@@ -4,10 +4,10 @@ import FightScreen from '../components/FightScreen.vue'
 import NewGame from '@/components/NewGame.vue'
 
 const routes = [
-    { path: '/simple', component: SelectionScreen },
-    { path: '/fight', component: FightScreen },
-    { path: '/adventure', component: SelectionScreen },
     { path: '/', component: NewGame },
+    { path: '/simple', component: SelectionScreen, props: { mode: 'simple' } },
+    { path: '/adventure', component: SelectionScreen, props: { mode: 'aventure' } },
+    { path: '/fight', component: FightScreen },
 ]
 
 const router = createRouter({
