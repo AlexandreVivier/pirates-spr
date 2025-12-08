@@ -6,6 +6,26 @@
             <HitPoints label="(Vous)" :currHealth="playerCurrHealth" :maxHealth="playerMaxHealth" :charaName="playerName"/>
             <HitPoints label="(Ennemi)" :currHealth="enemyCurrHealth" :maxHealth="enemyMaxHealth" :charaName="ennemyName" class="flex-row-reverse"/>
         </div>
+        <!-- <div v-if="props.mode === 'aventure'" class="flex justify-start items-center w-1/2">
+            <p class="text-center italic text-2xl dark:text-yellow-400 text-yellow-700 bastarda pb-6">
+              Pièces d'or : {{ player.gold }}
+            </p>
+        </div> -->
+        <div v-if="props.mode === 'aventure'" class="flex justify-start items-center w-1/2">
+        <p class="text-center italic text-2xl dark:text-yellow-400 text-yellow-700 bastarda pb-6">
+  <template v-if="player.gold > 0">
+    <p class="inline mr-2">Pièces d'or :</p>
+    <img
+      v-for="n in player.gold"
+      :key="n"
+      src="/images/icons/coin.png"
+      class="inline h-6 w-6"
+      alt="pièce d'or"
+    />
+  </template>
+  <span v-else>aucune pièce d'or !</span>
+</p>
+    </div>
         <div v-show="gameover === true" class="flex flex-col justify-center items-center mb-4">
             <img v-if="endGameMessage=== 'Vous avez perdu la partie !'" :src="enemy.portrait" alt="Game Over" class="w-32 bg-gradient-to-b from-red-950 via-red-500 to-red-950 border-2 border-stone-500 h-32 mb-4"/>
             <img v-else :src="player.portrait" alt="Victory" class="w-32 h-32 bg-gradient-to-b from-green-950 via-green-500 to-green-950 border-2 border-stone-500 mb-4"/>
@@ -24,7 +44,7 @@
 </template>
 
 <script lang="js" setup>
-import { ref, computed } from 'vue'
+import { ref, computed, defineProps } from 'vue'
 import { useRoute } from 'vue-router'
 import ActionPannel from './ActionPannel.vue'
 import HitPoints from './HitPoints.vue'
@@ -40,6 +60,12 @@ import {
   jackMarrow,
   esperanzaPolvora
 } from './classes/characters.js'
+
+const props = defineProps({
+    mode: String
+})
+
+console.log(props.mode)
 
 const route = useRoute()
 

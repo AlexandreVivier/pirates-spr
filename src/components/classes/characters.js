@@ -30,7 +30,7 @@ const barbeBlonde = new Character(
     'Légendaire capitaine pirate à la barbe aussi dorée que sa fortune. Mais à mesure qu\'il vieillit et grisonne, sa trésorerie se tarit, ce qui ne fait qu\'aggraver sa cupidité...',
     'Barbe-blonde gagne le double de pièces d\'or si il gagne un combat.',
     // 'Barbe-blonde n\'a pas de capacité spéciale pour l\'instant.',
-    0
+    3
 );
 
 const jungleJane = new Character(
