@@ -89,6 +89,17 @@ const enemySkins = computed(() => enemy.value.skins)
 const playerChoice = ref('idle')
 const computerChoice = ref('idle')
 
+// Préparation de l'aventure
+if (props.mode === 'aventure') {
+const ennemies = allNames.filter(name => name !== playerName);
+const ennemiesRndm = suffleArray(ennemies);
+const adventure = new Adventure(player, 3, ennemiesRndm, 0)
+console.log(adventure);
+} else {
+  console.log('Mode duel activé');
+}
+// const adventure = new Adventure(player, 3, ennemiesRndm, 0)
+
 function suffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -96,11 +107,6 @@ function suffleArray(array) {
   }
   return array;
 }
-const ennemies = allNames.filter(name => name !== playerName);
-const ennemiesRndm = suffleArray(ennemies);
-// console.log(ennemiesRndm);
-const adventure = new Adventure(player, 3, ennemiesRndm, 0)
-console.log(adventure);
 
 function getCharacterByName(name) {
   switch (name) {
