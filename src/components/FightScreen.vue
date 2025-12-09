@@ -13,10 +13,10 @@
         </div> -->
         <div v-if="props.mode === 'aventure'" class="flex justify-start items-center w-1/2">
         <p class="text-center italic text-2xl dark:text-yellow-400 text-yellow-700 bastarda pb-6">
-  <template v-if="player.gold > 0">
+  <template v-if="adventure.wealth > 0">
     <p class="inline mr-2">Pièces d'or :</p>
     <img
-      v-for="n in player.gold"
+      v-for="n in adventure.wealth"
       :key="n"
       src="/images/icons/coin.png"
       class="inline h-6 w-6"
@@ -60,12 +60,11 @@ import {
   jackMarrow,
   esperanzaPolvora
 } from './classes/characters.js'
+import { Adventure } from './classes/adventure.js'
 
 const props = defineProps({
     mode: String
 })
-
-console.log(props.mode)
 
 const route = useRoute()
 
@@ -89,6 +88,19 @@ const enemySkins = computed(() => enemy.value.skins)
 
 const playerChoice = ref('idle')
 const computerChoice = ref('idle')
+
+function suffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+const ennemies = allNames.filter(name => name !== playerName);
+const ennemiesRndm = suffleArray(ennemies);
+// console.log(ennemiesRndm);
+const adventure = new Adventure(player, 3, ennemiesRndm, 0)
+console.log(adventure);
 
 function getCharacterByName(name) {
   switch (name) {

@@ -1,6 +1,6 @@
 // src/classes/characters.js
 class Character {
-    constructor(name, currHealth, maxHealth, portrait, skins, availableActions, immunities, biography, description, gold) {
+    constructor(name, currHealth, maxHealth, portrait, skins, availableActions, immunities, biography, description) {
         this.name = name;
         this.currHealth = currHealth;
         this.maxHealth = maxHealth;
@@ -10,7 +10,6 @@ class Character {
         this.immunities = immunities;
         this.biography = biography;
         this.description = description;
-        this.gold = gold;
     }
 }
 
@@ -28,9 +27,8 @@ const barbeBlonde = new Character(
     ['attaquer', 'parer', 'moquer'],
     [],
     'Légendaire capitaine pirate à la barbe aussi dorée que sa fortune. Mais à mesure qu\'il vieillit et grisonne, sa trésorerie se tarit, ce qui ne fait qu\'aggraver sa cupidité...',
-    'Barbe-blonde gagne le double de pièces d\'or si il gagne un combat.',
+    'Barbe-blonde gagne le double de pièces d\'or si il gagne un combat.'
     // 'Barbe-blonde n\'a pas de capacité spéciale pour l\'instant.',
-    3
 );
 
 const jungleJane = new Character(
@@ -47,8 +45,7 @@ const jungleJane = new Character(
     ['attaquer*', 'parer', 'moquer'],
     [],
     'Exploratrice intrépide, Jungle Jane a parcouru toutes les jungles les plus dangereuses des Caraïbes avant de se lancer dans la piraterie. La navigation est encore un mystère pour elle, mais les coups de machete, ça lui connait !',
-    'Jungle Jane fait perdre 2 points de vie quand elle \'attaque\' et touche.',
-    0
+    'Jungle Jane fait perdre 2 points de vie quand elle \'attaque\' et touche.'
 );
 
 const jackMarrow = new Character(
@@ -65,8 +62,7 @@ const jackMarrow = new Character(
     ['attaquer', 'parer', 'moquer'],
     ['moquer', 'moquer*'],
     'Pirate des temps jadis ou les consignes de sécurité à bord n\'étaient pas encore écrites, un coup de canon lui a fait perdre l\'audition. Depuis, il n\'entend pas s\'arrêter d\'écumer les océans et de graver sa légende.',
-    'Jack Marrow est insensible à la \'moquerie\' adverse.',
-    0
+    'Jack Marrow est insensible à la \'moquerie\' adverse.'
 );
 
 const francoisDeSurcoup = new Character(
@@ -83,8 +79,7 @@ const francoisDeSurcoup = new Character(
     ['attaquer', 'parer', 'moquer'],
     [],
     'Corsaire à la malchance improbable, il peut cependant compter sur une endurance hors du commun pour survivre aux pires situations.',
-    'François de Surcoup possède 5 points de vie au lieu de 3.',
-    0
+    'François de Surcoup possède 5 points de vie au lieu de 3.'
 );
 
 const esperanzaPolvora = new Character(
@@ -102,8 +97,7 @@ const esperanzaPolvora = new Character(
     ['attaquer', 'parer', 'moquer', 'menacer'],
     [],
     'Indécise entre la hache et la poudre, Esperanza est tout aussi suceptible de vous envoyer les deux à la fois ! Et suceptible tout court, d\'ailleurs...',
-    'Esperanza Pólvora y Hacha peut "menacer", ce qui bat la "moquerie" et "parer".',
-    0
+    'Esperanza Pólvora y Hacha peut "menacer", ce qui bat la "moquerie" et "parer".'
 );
 
 export {
