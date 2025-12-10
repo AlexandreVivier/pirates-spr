@@ -6,31 +6,31 @@
             <HitPoints label="(Vous)" :currHealth="playerCurrHealth" :maxHealth="playerMaxHealth" :charaName="playerName"/>
             <HitPoints label="(Ennemi)" :currHealth="enemyCurrHealth" :maxHealth="enemyMaxHealth" :charaName="ennemyName" class="flex-row-reverse"/>
         </div>
-        <!-- <div v-if="props.mode === 'aventure'" class="flex justify-start items-center w-1/2">
-            <p class="text-center italic text-2xl dark:text-yellow-400 text-yellow-700 bastarda pb-6">
-              Pièces d'or : {{ player.gold }}
-            </p>
-        </div> -->
-        <div v-if="props.mode === 'aventure'" class="flex justify-start items-center w-1/2">
+      <div v-if="props.mode === 'aventure'" class="flex justify-start items-center w-full md:w-1/2">
         <p class="text-center italic text-2xl dark:text-yellow-400 text-yellow-700 bastarda pb-6">
-  <template v-if="adventure.wealth > 0">
-    <p class="inline mr-2">Pièces d'or :</p>
-    <img
-      v-for="n in adventure.wealth"
-      :key="n"
-      src="/images/icons/coin.png"
-      class="inline h-6 w-6"
-      alt="pièce d'or"
-    />
-  </template>
-  <span v-else>aucune pièce d'or !</span>
-</p>
-    </div>
-        <div v-show="gameover === true" class="flex flex-col justify-center items-center mb-4">
+          <template v-if="adventure && adventure.wealth > 0">
+            <span class="inline mr-2">Pièces d'or :</span>
+            <img
+              v-for="n in adventure.wealth"
+              :key="n"
+              src="/images/icons/coin.png"
+              class="inline h-6 w-6"
+              alt="pièce d'or"
+            />
+          </template>
+          <span v-else>
+            aucune pièce d'or !
+          </span>
+        </p>
+      </div>
+        <div v-show="gameover === true && props.mode === 'simple'" class="flex flex-col justify-center items-center mb-4">
             <img v-if="endGameMessage=== 'Vous avez perdu la partie !'" :src="enemy.portrait" alt="Game Over" class="w-32 bg-gradient-to-b from-red-950 via-red-500 to-red-950 border-2 border-stone-500 h-32 mb-4"/>
             <img v-else :src="player.portrait" alt="Victory" class="w-32 h-32 bg-gradient-to-b from-green-950 via-green-500 to-green-950 border-2 border-stone-500 mb-4"/>
             <p class="text-center italic text-2xl bastarda pb-6" :class="endGameMessage === 'Vous avez perdu la partie !' ? 'text-red-500' : 'text-green-500'">{{ endGameMessage }}</p>
             <CommonButton label="Rejouer ?" :action="{ path: '/', query: {} }"/>
+        </div>
+        <div v-show="gameover === true && endGameMessage === 'Vous avez gagné la partie !' && props.mode === 'aventure'" class="flex flex-col justify-center items-center mb-4">
+          <VictoryShop />
         </div>
         <div v-if="gameover === false" class="flex flex-col w-full min-h-[50vh] justify-center items-center">
             <DuelingImages :playerSkin="playerSkins[playerChoice]" 
@@ -53,6 +53,7 @@ import HistoryLog from './HistoryLog.vue'
 import CommonButton from './CommonButton.vue'
 import DuelingImages from './DuelingImages.vue'
 import AppCopyrights from './AppCopyrights.vue'
+import VictoryShop from './VictoryShop.vue'
 import { 
   barbeBlonde, 
   francoisDeSurcoup, 
@@ -70,9 +71,23 @@ const route = useRoute()
 
 const playerName = route.query.playerName || 'Barbe-blonde'
 const allNames = ['Barbe-blonde', 'François de Surcoup', 'Jack Marrow', 'Jungle Jane', 'Esperanza Pólvora y Hacha']
-const ennemyName = allNames.filter(name => name !== playerName)[Math.floor(Math.random() * (allNames.length - 1))]
-
 const player = computed(() => getCharacterByName(playerName));
+
+// Préparation de l'aventure
+const adventure = ref(null)
+const ennemyName = ref(null)
+// Préparation de l'aventure
+if (props.mode === 'aventure') {
+  const ennemies = allNames.filter(name => name !== playerName)
+  const ennemiesRndm = suffleArray(ennemies)
+  adventure.value = new Adventure(player, 3, ennemiesRndm, 0)
+  ennemyName.value = adventure.value.ennemies[0]
+} else {
+  ennemyName.value = allNames.filter(name => name !== playerName)[
+    Math.floor(Math.random() * (allNames.length - 1))
+  ]
+}
+
 const enemy = computed(() => getCharacterByName(ennemyName));
           
 const playerCurrHealth = ref(player.value.currHealth)
@@ -88,17 +103,6 @@ const enemySkins = computed(() => enemy.value.skins)
 
 const playerChoice = ref('idle')
 const computerChoice = ref('idle')
-
-// Préparation de l'aventure
-if (props.mode === 'aventure') {
-const ennemies = allNames.filter(name => name !== playerName);
-const ennemiesRndm = suffleArray(ennemies);
-const adventure = new Adventure(player, 3, ennemiesRndm, 0)
-console.log(adventure);
-} else {
-  console.log('Mode duel activé');
-}
-// const adventure = new Adventure(player, 3, ennemiesRndm, 0)
 
 function suffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -153,6 +157,14 @@ function updateHistory(fight) {
     endGameMessage.value = playerCurrHealth.value <= 0
       ? 'Vous avez perdu la partie !'
       : 'Vous avez gagné la partie !'
+
+    // Si en mode aventure et victoire, ajouter de l'or
+    if (props.mode === 'aventure' && enemyCurrHealth.value <= 0) {
+      adventure.value.wealth += 1
+      adventure.value.fightNumber += 1
+      adventure.value.ennemies.pop()
+      console.log('Aventure mise à jour :', adventure.value.ennemies)
+    }
   }
 }
 </script>
