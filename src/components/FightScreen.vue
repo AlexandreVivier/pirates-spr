@@ -1,11 +1,18 @@
-<template>
+<template v-if="enemy && player">
     <div class="bg-stone-100 dark:bg-stone-900 min-h-screen h-full px-1">
     <div class="flex flex-col items-center w-full bg-stone-100 dark:bg-stone-900 h-screen">
         <TitleCard v-if="gameover === true"/>
         <div class="flex justify-around items-center w-5/8 md:w-full">
             <HitPoints label="(Vous)" :currHealth="playerCurrHealth" :maxHealth="playerMaxHealth" :charaName="playerName"/>
-            <HitPoints label="(Ennemi)" :currHealth="enemyCurrHealth" :maxHealth="enemyMaxHealth" :charaName="ennemyName" class="flex-row-reverse"/>
-        </div>
+            <!-- <HitPoints label="(Ennemi)" :currHealth="enemyCurrHealth" :maxHealth="enemyMaxHealth" :charaName="ennemyName" class="flex-row-reverse"/> -->
+            <HitPoints 
+                v-if="enemy"
+                label="(Ennemi)"
+                :currHealth="enemyCurrHealth"
+                :maxHealth="enemyMaxHealth"
+                :charaName="ennemyName"
+            />
+          </div>
       <div v-if="props.mode === 'aventure'" class="flex justify-start items-center w-full md:w-1/2">
         <p class="text-center italic text-2xl dark:text-yellow-400 text-yellow-700 bastarda pb-6">
           <template v-if="adventure && adventure.wealth > 0">
@@ -88,12 +95,15 @@ if (props.mode === 'aventure') {
   ]
 }
 
-const enemy = computed(() => getCharacterByName(ennemyName));
-          
-const playerCurrHealth = ref(player.value.currHealth)
-const enemyCurrHealth = ref(enemy.value.currHealth)
-const playerMaxHealth = ref(player.value.maxHealth)
-const enemyMaxHealth = ref(enemy.value.maxHealth)
+const enemy = computed(() =>
+  ennemyName.value ? getCharacterByName(ennemyName.value) : null
+);
+
+const playerCurrHealth = ref(player.value?.currHealth ?? 0)
+const enemyCurrHealth = ref(enemy.value?.currHealth ?? 0)
+const playerMaxHealth = ref(player.value?.maxHealth ?? 1)
+const enemyMaxHealth = ref(enemy.value?.maxHealth ?? 1)
+
 const logs = ref([])
 const gameover = ref(false)
 const endGameMessage = ref('')
@@ -133,7 +143,6 @@ function updateHistory(fight) {
   logs.value.push(`Votre action : ${fight.playerChoice}, Action de l'adversaire : ${fight.computerChoice}, Résultat : ${fight.result}`)
   playerChoice.value = fight.playerChoice
   computerChoice.value = fight.computerChoice
-
   // Application des dégâts
   if (fight.result === 'Vous avez perdu !') {
     playerCurrHealth.value--
@@ -146,23 +155,21 @@ function updateHistory(fight) {
   } else {
     // rien
   }
-
   // Empêche les valeurs négatives
   if (playerCurrHealth.value < 0) playerCurrHealth.value = 0
   if (enemyCurrHealth.value < 0) enemyCurrHealth.value = 0
-
   // Vérifie la fin du jeu
   if (playerCurrHealth.value <= 0 || enemyCurrHealth.value <= 0) {
     gameover.value = true
     endGameMessage.value = playerCurrHealth.value <= 0
       ? 'Vous avez perdu la partie !'
       : 'Vous avez gagné la partie !'
-
-    // Si en mode aventure et victoire, ajouter de l'or
+    // Si en mode aventure et victoire, mise à jour de l'aventure
     if (props.mode === 'aventure' && enemyCurrHealth.value <= 0) {
       adventure.value.wealth += 1
       adventure.value.fightNumber += 1
-      adventure.value.ennemies.pop()
+      adventure.value.ennemies.shift()
+      ennemyName.value = adventure.value.ennemies[0] || null
       console.log('Aventure mise à jour :', adventure.value.ennemies)
     }
   }
