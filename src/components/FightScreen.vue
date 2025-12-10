@@ -37,7 +37,7 @@
             <CommonButton label="Rejouer ?" :action="{ path: '/', query: {} }"/>
         </div>
         <div v-show="gameover === true && endGameMessage === 'Vous avez gagné la partie !' && props.mode === 'aventure'" class="flex flex-col justify-center items-center mb-4">
-          <VictoryShop />
+          <VictoryShop :playerName="playerName" :mode="props.mode" />
         </div>
         <div v-if="gameover === false" class="flex flex-col w-full min-h-[50vh] justify-center items-center">
             <DuelingImages :playerSkin="playerSkins[playerChoice]" 
@@ -69,12 +69,11 @@ import {
   esperanzaPolvora
 } from './classes/characters.js'
 import { Adventure } from './classes/adventure.js'
-
 const props = defineProps({
     mode: String
 })
-
 const route = useRoute()
+
 
 const playerName = route.query.playerName || 'Barbe-blonde'
 const allNames = ['Barbe-blonde', 'François de Surcoup', 'Jack Marrow', 'Jungle Jane', 'Esperanza Pólvora y Hacha']
@@ -84,17 +83,18 @@ const player = computed(() => getCharacterByName(playerName));
 const adventure = ref(null)
 const ennemyName = ref(null)
 // Préparation de l'aventure
-if (props.mode === 'aventure') {
+if (props.mode === 'aventure' && adventure.value === null) {
   const ennemies = allNames.filter(name => name !== playerName)
   const ennemiesRndm = suffleArray(ennemies)
   adventure.value = new Adventure(player, 3, ennemiesRndm, 0)
+  ennemyName.value = adventure.value.ennemies[0]
+} else if (props.mode === 'aventure' && adventure.value !== null) {
   ennemyName.value = adventure.value.ennemies[0]
 } else {
   ennemyName.value = allNames.filter(name => name !== playerName)[
     Math.floor(Math.random() * (allNames.length - 1))
   ]
 }
-
 const enemy = computed(() =>
   ennemyName.value ? getCharacterByName(ennemyName.value) : null
 );
@@ -166,11 +166,16 @@ function updateHistory(fight) {
       : 'Vous avez gagné la partie !'
     // Si en mode aventure et victoire, mise à jour de l'aventure
     if (props.mode === 'aventure' && enemyCurrHealth.value <= 0) {
-      adventure.value.wealth += 1
+      // console.log(adventure.value.protagonist.name + ' a vaincu ' + ennemyName.value)
+      let nG = 1
+      if (adventure.value.protagonist.name === 'Barbe-blonde') {
+              adventure.value.wealth += nG*2
+      } else {
+              adventure.value.wealth += nG
+      }
       adventure.value.fightNumber += 1
       adventure.value.ennemies.shift()
       ennemyName.value = adventure.value.ennemies[0] || null
-      console.log('Aventure mise à jour :', adventure.value.ennemies)
     }
   }
 }
