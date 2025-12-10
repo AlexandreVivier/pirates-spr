@@ -4,7 +4,6 @@
         <TitleCard v-if="gameover === true"/>
         <div class="flex justify-around items-center w-5/8 md:w-full">
             <HitPoints label="(Vous)" :currHealth="playerCurrHealth" :maxHealth="playerMaxHealth" :charaName="playerName"/>
-            <!-- <HitPoints label="(Ennemi)" :currHealth="enemyCurrHealth" :maxHealth="enemyMaxHealth" :charaName="ennemyName" class="flex-row-reverse"/> -->
             <HitPoints 
                 v-if="enemy"
                 label="(Ennemi)"
@@ -36,9 +35,9 @@
             <p class="text-center italic text-2xl bastarda pb-6" :class="endGameMessage === 'Vous avez perdu la partie !' ? 'text-red-500' : 'text-green-500'">{{ endGameMessage }}</p>
             <CommonButton label="Rejouer ?" :action="{ path: '/', query: {} }"/>
         </div>
-        <div v-show="gameover === true && endGameMessage === 'Vous avez gagné la partie !' && props.mode === 'aventure'" class="flex flex-col justify-center items-center mb-4">
+        <!-- <div v-show="gameover === true && endGameMessage === 'Vous avez gagné la partie !' && props.mode === 'aventure'" class="flex flex-col justify-center items-center mb-4">
           <VictoryShop :playerName="playerName" :mode="props.mode" />
-        </div>
+        </div> -->
         <div v-if="gameover === false" class="flex flex-col w-full min-h-[50vh] justify-center items-center">
             <DuelingImages :playerSkin="playerSkins[playerChoice]" 
             :ennemySkin="enemySkins[computerChoice]"/>
@@ -60,7 +59,7 @@ import HistoryLog from './HistoryLog.vue'
 import CommonButton from './CommonButton.vue'
 import DuelingImages from './DuelingImages.vue'
 import AppCopyrights from './AppCopyrights.vue'
-import VictoryShop from './VictoryShop.vue'
+// import VictoryShop from './VictoryShop.vue'
 import { 
   barbeBlonde, 
   francoisDeSurcoup, 
@@ -74,7 +73,6 @@ const props = defineProps({
 })
 const route = useRoute()
 
-
 const playerName = route.query.playerName || 'Barbe-blonde'
 const allNames = ['Barbe-blonde', 'François de Surcoup', 'Jack Marrow', 'Jungle Jane', 'Esperanza Pólvora y Hacha']
 const player = computed(() => getCharacterByName(playerName));
@@ -83,17 +81,40 @@ const player = computed(() => getCharacterByName(playerName));
 const adventure = ref(null)
 const ennemyName = ref(null)
 // Préparation de l'aventure
-if (props.mode === 'aventure' && adventure.value === null) {
-  const ennemies = allNames.filter(name => name !== playerName)
-  const ennemiesRndm = suffleArray(ennemies)
-  adventure.value = new Adventure(player, 3, ennemiesRndm, 0)
-  ennemyName.value = adventure.value.ennemies[0]
-} else if (props.mode === 'aventure' && adventure.value !== null) {
-  ennemyName.value = adventure.value.ennemies[0]
-} else {
-  ennemyName.value = allNames.filter(name => name !== playerName)[
-    Math.floor(Math.random() * (allNames.length - 1))
-  ]
+// if (props.mode === 'aventure' && adventure.value === null) {
+//   const ennemies = allNames.filter(name => name !== playerName)
+//   const ennemiesRndm = suffleArray(ennemies)
+//   adventure.value = new Adventure(player, 3, ennemiesRndm, 0)
+//   ennemyName.value = adventure.value.ennemies[0]
+// } else if (props.mode === 'aventure' && adventure.value !== null) {
+//   ennemyName.value = adventure.value.ennemies[0]
+// } else {
+//   ennemyName.value = allNames.filter(name => name !== playerName)[
+//     Math.floor(Math.random() * (allNames.length - 1))
+//   ]
+// }
+
+if (props.mode === 'aventure') {
+    const raw = sessionStorage.getItem('adventure')
+
+    if (raw) {
+        const data = JSON.parse(raw)
+        adventure.value = new Adventure(
+            player.value,
+            data.wealth,
+            data.ennemies,
+            data.fightNumber
+        )
+        ennemyName.value = adventure.value.ennemies[0]
+    } else {
+        // Première aventure
+        const ennemies = suffleArray(allNames.filter(name => name !== playerName))
+        adventure.value = new Adventure(player, 3, ennemies, 0)
+        ennemyName.value = adventure.value.ennemies[0]
+
+        // Sauvegarde la nouvelle aventure
+        sessionStorage.setItem('adventure', JSON.stringify(adventure.value))
+    }
 }
 const enemy = computed(() =>
   ennemyName.value ? getCharacterByName(ennemyName.value) : null
@@ -165,18 +186,15 @@ function updateHistory(fight) {
       ? 'Vous avez perdu la partie !'
       : 'Vous avez gagné la partie !'
     // Si en mode aventure et victoire, mise à jour de l'aventure
+    // if (props.mode === 'aventure' && enemyCurrHealth.value <= 0) {
+    //   window.location.href = `/adventure/lobby?playerName=${playerName}`
+    // }
     if (props.mode === 'aventure' && enemyCurrHealth.value <= 0) {
-      // console.log(adventure.value.protagonist.name + ' a vaincu ' + ennemyName.value)
-      let nG = 1
-      if (adventure.value.protagonist.name === 'Barbe-blonde') {
-              adventure.value.wealth += nG*2
-      } else {
-              adventure.value.wealth += nG
-      }
-      adventure.value.fightNumber += 1
-      adventure.value.ennemies.shift()
-      ennemyName.value = adventure.value.ennemies[0] || null
-    }
+    // Sauvegarde l'aventure dans sessionStorage
+    sessionStorage.setItem('adventure', JSON.stringify(adventure.value))
+
+    window.location.href = `/adventure/lobby?playerName=${playerName}`
+}
   }
 }
 </script>
