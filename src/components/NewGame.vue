@@ -87,9 +87,9 @@
           <VictoryShop :playerName="playerName" :mode="props.mode" />
         </div> -->
         <div v-if="gameover === false" class="flex flex-col w-full min-h-[50vh] justify-center items-center">
-            <!-- <DuelingImages :playerSkin="playerSkins[playerChoice]" 
-            :ennemySkin="enemySkins[computerChoice]"/>
-            <ActionPannel @update-history="updateHistory" :player="player" :enemy="enemy"/> -->
+            <FightWindow :player="player" :playerChoice="playerChoice"
+            :ennemy="ennemy" :ennemyChoice="ennemyChoice"/>
+            <FightPannel @update-history="updateHistory" :player="player" :ennemy="ennemy"/>
         </div>
         <!-- <HistoryLog :logs="logs"/> -->
         </template>
@@ -104,8 +104,8 @@ import TitleCard from './TitleCard.vue'
 import AppCopyrights from './AppCopyrights.vue'
 import PortraitSelect from './PortraitSelect.vue'
 import HitPoints from './HitPoints.vue'
-// import DuelingImages from './DuelingImages.vue'
-// import ActionPannel from './ActionPannel.vue'
+import FightWindow from './elements/FightWindow.vue'
+import FightPannel from './elements/FightPannel.vue'
 // import HistoryLog from './HistoryLog.vue'
 import { ref } from 'vue'
 import { 
@@ -126,6 +126,8 @@ const gameStarted = ref(false)
 const gameover = ref(false)
 const endGameMessage = ref('')
 const adventure = ref(null)
+const playerChoice = ref(null)
+const ennemyChoice = ref(null)
 
 function defineGameMode(mode) {
     gameMode.value = mode
@@ -149,7 +151,7 @@ function startGame() {
     ennemy.value = adventure.value.ennemies[0]
     gameStarted.value = true
     selectionScreen.value = false
-    console.log( ennemy.value, ennemy.value.currHealth, ennemy.value.maxHealth )
+    // console.log( ennemy.value, ennemy.value.currHealth, ennemy.value.maxHealth )
 }
 
 function generateEnnemies() {
@@ -174,5 +176,12 @@ function suffleArray(array) {
     }
     return array;
 }
+
+// function fight(playerChoiceParam) {
+//     playerChoice.value = playerChoiceParam
+//     ennemyChoice.value = ennemy.value.availableActions[Math.floor(Math.random() * ennemy.value.availableActions.length)]
+// }
+
+// console.log('choix cpu', ennemyChoice, 'choix playr', playerChoice);
 
 </script>
