@@ -33,18 +33,14 @@ const emit = defineEmits(['update-history'])
 
 const choices = computed(() => props.player.availableActions)
 
-// function fight(playerChoiceParam) {
-//     playerChoice.value = playerChoiceParam
-//     ennemyChoice.value = ennemy.value.availableActions[Math.floor(Math.random() * ennemy.value.availableActions.length)]
-// }
-
 function rollFight(playerChoice) {
     const ennemyChoice = props.ennemy.availableActions[Math.floor(Math.random() * props.ennemy.availableActions.length)]
     const playerImmunities = props.player.immunities
     const ennemyImmunities = props.ennemy.immunities
     let result = ''
 
-console.log('choix cpu en direct',ennemyChoice.value, 'choix player en direct',playerChoice.value);
+// console.log('choix cpu en direct',ennemyChoice, 'choix player en direct',playerChoice);
+
     // Check for immunities first
     if (ennemyImmunities.includes(playerChoice)) {
         result = 'Aucun effet sur l\'ennemi !'

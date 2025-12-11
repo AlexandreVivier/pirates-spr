@@ -77,21 +77,28 @@
           </span>
         </p>
       </div>
-        <div v-show="gameover === true && gameMode === 'simple'" class="flex flex-col justify-center items-center mb-4">
-            <img v-if="endGameMessage=== 'Vous avez perdu la partie !'" :src="enemy.portrait" alt="Game Over" class="w-32 bg-gradient-to-b from-red-950 via-red-500 to-red-950 border-2 border-stone-500 h-32 mb-4"/>
+        <div v-show="gameover === true && gameMode === 'duel'" class="flex flex-col justify-center items-center mb-4">
+            <img v-if="defeat" :src="ennemy.portrait" alt="Game Over" class="w-32 bg-gradient-to-b from-red-950 via-red-500 to-red-950 border-2 border-stone-500 h-32 mb-4"/>
             <img v-else :src="player.portrait" alt="Victory" class="w-32 h-32 bg-gradient-to-b from-green-950 via-green-500 to-green-950 border-2 border-stone-500 mb-4"/>
             <p class="text-center italic text-2xl bastarda pb-6" :class="endGameMessage === 'Vous avez perdu la partie !' ? 'text-red-500' : 'text-green-500'">{{ endGameMessage }}</p>
-            <CommonButton label="Rejouer ?"/>
+            <CommonButton label="Rejouer ?" @click="resetGame" />
         </div>
-        <!-- <div v-show="gameover === true && endGameMessage === 'Vous avez gagné la partie !' && props.mode === 'aventure'" class="flex flex-col justify-center items-center mb-4">
-          <VictoryShop :playerName="playerName" :mode="props.mode" />
-        </div> -->
+        <div v-show="gameover === true && gameMode === 'aventure'" class="flex flex-col justify-center items-center mb-4">
+            <div v-if="defeat">
+                <img :src="ennemy.portrait" alt="Game Over" class="w-32 bg-gradient-to-b from-red-950 via-red-500 to-red-950 border-2 border-stone-500 h-32 mb-4"/>
+                <p class="text-center italic text-2xl bastarda pb-6 text-red-500">{{ endGameMessage }}</p>
+                <CommonButton label="Rejouer ?" @click="resetGame" />
+            </div>
+            <div v-else>
+            <VictoryShop @next-fight="nextFight"/>
+            </div> 
+        </div>
         <div v-if="gameover === false" class="flex flex-col w-full min-h-[50vh] justify-center items-center">
             <FightWindow :player="player" :playerChoice="playerChoice"
             :ennemy="ennemy" :ennemyChoice="ennemyChoice"/>
             <FightPannel @update-history="updateHistory" :player="player" :ennemy="ennemy"/>
         </div>
-        <!-- <HistoryLog :logs="logs"/> -->
+        <HistoryLog :logs="logs"/>
         </template>
     </div>
     </div>
@@ -106,7 +113,8 @@ import PortraitSelect from './PortraitSelect.vue'
 import HitPoints from './HitPoints.vue'
 import FightWindow from './elements/FightWindow.vue'
 import FightPannel from './elements/FightPannel.vue'
-// import HistoryLog from './HistoryLog.vue'
+import HistoryLog from './HistoryLog.vue'
+import VictoryShop from './VictoryShop.vue'
 import { ref } from 'vue'
 import { 
   barbeBlonde, 
@@ -128,6 +136,9 @@ const endGameMessage = ref('')
 const adventure = ref(null)
 const playerChoice = ref(null)
 const ennemyChoice = ref(null)
+const logs = ref([])
+const victory = ref(false)
+const defeat = ref(false)
 
 function defineGameMode(mode) {
     gameMode.value = mode
@@ -177,11 +188,80 @@ function suffleArray(array) {
     return array;
 }
 
-// function fight(playerChoiceParam) {
-//     playerChoice.value = playerChoiceParam
-//     ennemyChoice.value = ennemy.value.availableActions[Math.floor(Math.random() * ennemy.value.availableActions.length)]
-// }
+function updateHistory(fight) {
+    // console.log('fight reçu dans newgame', fight);
+    ennemyChoice.value = fight.ennemyChoice
+    playerChoice.value = fight.playerChoice
+  logs.value.push(`Votre action : ${fight.playerChoice}, Action de l'adversaire : ${fight.ennemyChoice}, Résultat : ${fight.result}`)
+  // Application des dégâts
+  if (fight.result === 'Vous avez perdu !') {
+    player.value.currHealth--
+  } else if (fight.result === 'Vous avez gagné !') {
+    ennemy.value.currHealth--
+  } else if (fight.result === 'Vous avez perdu ! ( coup critique )') {
+    player.value.currHealth -= 2
+  } else if (fight.result === 'Vous avez gagné ! ( coup critique )') {
+    ennemy.value.currHealth -= 2
+  } else {
+    // rien
+  }
+  // Empêche les valeurs négatives
+  if (player.value.currHealth < 0) player.value.currHealth = 0
+  if (ennemy.value.currHealth < 0) ennemy.value.currHealth = 0
+  // Vérifie la fin du jeu
+  if (player.value.currHealth <= 0 || ennemy.value.currHealth <= 0) {
+    gameover.value = true
+    // endGameMessage.value = player.value.currHealth <= 0
+    //   ? 'Vous avez perdu la partie !'
+    //   : 'Vous avez gagné la partie !'
+      if (player.value.currHealth <= 0) {
+        defeat.value = true
+        endGameMessage.value = 'Vous avez perdu la partie !'
+    } else {
+        victory.value = true
+        endGameMessage.value = 'Vous avez gagné la partie !'
+    }
+    // Si en mode aventure et victoire, mise à jour de l'aventure
+    if (gameMode.value === 'aventure' && ennemy.value.currHealth <= 0) {
+        console.log('en fin de game', adventure.value.ennemies);
+        // temp
+        player.value.currHealth = player.value.maxHealth
+        adventure.value.protagonist.currHealth = adventure.value.protagonist.maxHealth
+        ennemy.value.currHealth = ennemy.value.maxHealth
+        let reward = 2
+        if(player.value.name === 'Barbe-blonde') {
+            adventure.value.wealth += reward * 2
+        } else {
+            adventure.value.wealth += reward
+        }
+    } else {
+        console.log('fin de partie');
+  }
+}
+}
 
-// console.log('choix cpu', ennemyChoice, 'choix playr', playerChoice);
+function resetGame() {
+  window.location.reload();
+}
+
+function nextFight() {
+    if (adventure.value.ennemies.length > 0) {
+        adventure.value.ennemies.shift()
+        ennemy.value = adventure.value.ennemies[0]
+        console.log('next fight', adventure.value.ennemies);
+        player.value.currHealth = player.value.maxHealth
+        ennemy.value.currHealth = ennemy.value.maxHealth
+        gameover.value = false
+        victory.value = false
+        defeat.value = false
+        endGameMessage.value = ''
+        logs.value = []
+        playerChoice.value = null
+        ennemyChoice.value = null
+    } else {
+        // Plus d'ennemis, fin de l'aventure
+    //    todo
+    }
+}
 
 </script>
