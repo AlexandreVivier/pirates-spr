@@ -1,19 +1,178 @@
 <template>
     <div class="flex flex-col items-center w-screen bg-stone-100 dark:bg-stone-900 w-full min-h-screen h-full px-2 py-12 gap-8">
-        <TitleCard />
-        <div class="flex flex-col justify-center items-center w-full mb-4">
-            <p class="text-center italic text-2xl text-stone-500 pb-6 pixelify-sans">
-                Sélectionnez votre mode de jeu :
+    <TitleCard />
+    <div class="flex flex-col justify-center items-center w-full mb-4">
+    <template v-if="noGame">
+            <div class="flex flex-col justify-center items-center w-full mb-4">
+                <p class="text-center italic text-2xl text-stone-500 pb-6 pixelify-sans">
+                    Sélectionnez votre mode de jeu :
+                </p>
+                <CommonButton class="w-full md:w-1/4 mb-4" label="Duel" @click="defineGameMode('duel')"/>
+                <CommonButton class="w-full md:w-1/4" label="Aventure" @click="defineGameMode('aventure')"/>
+            </div>
+    </template>
+    <template v-if="selectionScreen">
+        <h3 class=" py-2 px-4 text-center w-full jacquard12 text-stroke-5 text-xl md:text-4xl text-green-900 mb-6">{{ gameMode }}</h3>
+        <p class="text-center italic text-2xl text-stone-500 pb-6 pixelify-sans">
+            Sélectionnez votre pirate :
+        </p>
+            <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 lg:gap-1 justify-items-center w-full md:w-3/4 lg:w-1/2 mb-2">
+                <PortraitSelect :player="barbeBlonde"
+                    @click="selectPlayer(barbeBlonde)"
+                    :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': player === barbeBlonde }"
+                />
+                <PortraitSelect :player="francoisDeSurcoup"
+                    @click="selectPlayer(francoisDeSurcoup)"
+                    :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': player === francoisDeSurcoup }"
+                />
+                <PortraitSelect :player="jungleJane"
+                    @click="selectPlayer(jungleJane)"
+                    :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': player === jungleJane }"
+                />
+                <PortraitSelect :player="jackMarrow"
+                    @click="selectPlayer(jackMarrow)"
+                    :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': player === jackMarrow }"
+                />
+                <PortraitSelect :player="esperanzaPolvora"
+                    @click="selectPlayer(esperanzaPolvora)"
+                    :class="{ 'filter-none border-double border-8 !border-green-600 !bg-slate-800 transform -scale-x-100': player === esperanzaPolvora }"
+                />
+            </div>
+        <div v-if="player!= null" class="w-full flex flex-col items-center">
+            <p class="text-center italic text-2xl text-stone-500 pb-6 pixelify-sans">Je choisis 
+                <span class="text-stone-950 dark:text-stone-100 font-bold">{{ player.name }} !</span>
             </p>
-            <CommonButton class="w-full md:w-1/4 mb-4" label="Partie simple" :action="{ path: '/simple' }"/>
-            <CommonButton class="w-full md:w-1/4" label="Aventure" :action="{ path: '/adventure' }"/>
+            <CommonButton class="w-full md:w-1/4" label="Commencer à jouer !" @click="startGame" />
         </div>
-    <AppCopyrights />
+        <div v-if="player!= null" class="w-full flex flex-col text-shadow-special items-center mt-8 px-4">
+            <p class="text-center text-stone-900 dark:text-stone-100 text-lg md:text-4xl w-full md:w-1/2 font-bold jacquard12 md:py-4">"{{ player.biography }}"</p>
+            <p class="text-center italic text-stone-800 dark:text-stone-300 text-md md:text-2xl md:pt-4">- {{ player.description }} -</p>
+        </div>
+    </template>
+    <template v-if="gameStarted">
+        <div class="flex justify-around items-center w-5/8 md:w-full">
+            <HitPoints label="(Vous)" :currHealth="player.currHealth" :maxHealth="player.maxHealth" :charaName="player.name"/>
+            <HitPoints 
+                v-if="ennemy"
+                label="(Ennemi)"
+                :currHealth="ennemy.currHealth"
+                :maxHealth="ennemy.maxHealth"
+                :charaName="ennemy.name"
+            />
+          </div>
+      <div v-if="gameMode === 'aventure'" class="flex justify-start items-center w-full md:w-1/2">
+        <p class="text-center italic text-2xl dark:text-yellow-400 text-yellow-700 bastarda pb-6">
+          <template v-if="adventure && adventure.wealth > 0">
+            <span class="inline mr-2">Pièces d'or :</span>
+            <img
+              v-for="n in adventure.wealth"
+              :key="n"
+              src="/images/icons/coin.png"
+              class="inline h-6 w-6"
+              alt="pièce d'or"
+            />
+          </template>
+          <span v-else>
+            aucune pièce d'or !
+          </span>
+        </p>
+      </div>
+        <div v-show="gameover === true && gameMode === 'simple'" class="flex flex-col justify-center items-center mb-4">
+            <img v-if="endGameMessage=== 'Vous avez perdu la partie !'" :src="enemy.portrait" alt="Game Over" class="w-32 bg-gradient-to-b from-red-950 via-red-500 to-red-950 border-2 border-stone-500 h-32 mb-4"/>
+            <img v-else :src="player.portrait" alt="Victory" class="w-32 h-32 bg-gradient-to-b from-green-950 via-green-500 to-green-950 border-2 border-stone-500 mb-4"/>
+            <p class="text-center italic text-2xl bastarda pb-6" :class="endGameMessage === 'Vous avez perdu la partie !' ? 'text-red-500' : 'text-green-500'">{{ endGameMessage }}</p>
+            <CommonButton label="Rejouer ?"/>
+        </div>
+        <!-- <div v-show="gameover === true && endGameMessage === 'Vous avez gagné la partie !' && props.mode === 'aventure'" class="flex flex-col justify-center items-center mb-4">
+          <VictoryShop :playerName="playerName" :mode="props.mode" />
+        </div> -->
+        <div v-if="gameover === false" class="flex flex-col w-full min-h-[50vh] justify-center items-center">
+            <!-- <DuelingImages :playerSkin="playerSkins[playerChoice]" 
+            :ennemySkin="enemySkins[computerChoice]"/>
+            <ActionPannel @update-history="updateHistory" :player="player" :enemy="enemy"/> -->
+        </div>
+        <!-- <HistoryLog :logs="logs"/> -->
+        </template>
     </div>
+    </div>
+    <AppCopyrights />
 </template>
 
 <script lang="js" setup>
 import CommonButton from './CommonButton.vue'
 import TitleCard from './TitleCard.vue'
 import AppCopyrights from './AppCopyrights.vue'
+import PortraitSelect from './PortraitSelect.vue'
+import HitPoints from './HitPoints.vue'
+// import DuelingImages from './DuelingImages.vue'
+// import ActionPannel from './ActionPannel.vue'
+// import HistoryLog from './HistoryLog.vue'
+import { ref } from 'vue'
+import { 
+  barbeBlonde, 
+  francoisDeSurcoup, 
+  jungleJane, 
+  jackMarrow,
+  esperanzaPolvora
+} from './classes/characters.js'
+import { Adventure } from './classes/adventure.js'
+
+const player = ref(null)
+const ennemy = ref(null)
+const gameMode = ref(null)
+const noGame = ref(true)
+const selectionScreen = ref(false)
+const gameStarted = ref(false)
+const gameover = ref(false)
+const endGameMessage = ref('')
+const adventure = ref(null)
+
+function defineGameMode(mode) {
+    gameMode.value = mode
+    noGame.value = false
+    selectionScreen.value = true
+    adventure.value = new Adventure(null, 0, [], 0)
+}
+
+function selectPlayer(selectedPlayer) {
+    player.value = selectedPlayer
+}
+
+function startGame() {
+        if (gameMode.value === 'aventure' && player.value) {
+        adventure.value.protagonist = player.value
+        adventure.value.ennemies = generateEnnemies()
+        } else {
+        adventure.value.protagonist = player.value
+        adventure.value.ennemies = [generateOpponent()]
+        }
+    ennemy.value = adventure.value.ennemies[0]
+    gameStarted.value = true
+    selectionScreen.value = false
+    console.log( ennemy.value, ennemy.value.currHealth, ennemy.value.maxHealth )
+}
+
+function generateEnnemies() {
+    const allEnnemies = [barbeBlonde, francoisDeSurcoup, jungleJane, jackMarrow, esperanzaPolvora]
+    const ennemiesFiltered = allEnnemies.filter(chara => chara.name !== player.value.name)
+    const ennemiesRndm = suffleArray(ennemiesFiltered)
+    return ennemiesRndm
+}
+
+function generateOpponent() {
+const ennemiesRndm = generateEnnemies()
+return ennemiesRndm[0]
+}
+
+function suffleArray(array) {
+    let currentIndex = array.length, randomIndex;
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+    return array;
+}
+
 </script>
