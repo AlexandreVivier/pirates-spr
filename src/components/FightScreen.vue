@@ -81,41 +81,41 @@ const player = computed(() => getCharacterByName(playerName));
 const adventure = ref(null)
 const ennemyName = ref(null)
 // Préparation de l'aventure
-// if (props.mode === 'aventure' && adventure.value === null) {
-//   const ennemies = allNames.filter(name => name !== playerName)
-//   const ennemiesRndm = suffleArray(ennemies)
-//   adventure.value = new Adventure(player, 3, ennemiesRndm, 0)
-//   ennemyName.value = adventure.value.ennemies[0]
-// } else if (props.mode === 'aventure' && adventure.value !== null) {
-//   ennemyName.value = adventure.value.ennemies[0]
-// } else {
-//   ennemyName.value = allNames.filter(name => name !== playerName)[
-//     Math.floor(Math.random() * (allNames.length - 1))
-//   ]
-// }
-
-if (props.mode === 'aventure') {
-    const raw = sessionStorage.getItem('adventure')
-
-    if (raw) {
-        const data = JSON.parse(raw)
-        adventure.value = new Adventure(
-            player.value,
-            data.wealth,
-            data.ennemies,
-            data.fightNumber
-        )
-        ennemyName.value = adventure.value.ennemies[0]
-    } else {
-        // Première aventure
-        const ennemies = suffleArray(allNames.filter(name => name !== playerName))
-        adventure.value = new Adventure(player, 3, ennemies, 0)
-        ennemyName.value = adventure.value.ennemies[0]
-
-        // Sauvegarde la nouvelle aventure
-        sessionStorage.setItem('adventure', JSON.stringify(adventure.value))
-    }
+if (props.mode === 'aventure' && adventure.value === null) {
+  const ennemies = allNames.filter(name => name !== playerName)
+  const ennemiesRndm = suffleArray(ennemies)
+  adventure.value = new Adventure(player, 3, ennemiesRndm, 0)
+  ennemyName.value = adventure.value.ennemies[0]
+} else if (props.mode === 'aventure' && adventure.value !== null) {
+  ennemyName.value = adventure.value.ennemies[0]
+} else {
+  ennemyName.value = allNames.filter(name => name !== playerName)[
+    Math.floor(Math.random() * (allNames.length - 1))
+  ]
 }
+
+// if (props.mode === 'aventure') {
+//     const raw = sessionStorage.getItem('adventure')
+
+//     if (raw) {
+//         const data = JSON.parse(raw)
+//         adventure.value = new Adventure(
+//             player.value,
+//             data.wealth,
+//             data.ennemies,
+//             data.fightNumber
+//         )
+//         ennemyName.value = adventure.value.ennemies[0]
+//     } else {
+//         // Première aventure
+//         const ennemies = suffleArray(allNames.filter(name => name !== playerName))
+//         adventure.value = new Adventure(player, 3, ennemies, 0)
+//         ennemyName.value = adventure.value.ennemies[0]
+
+//         // Sauvegarde la nouvelle aventure
+//         sessionStorage.setItem('adventure', JSON.stringify(adventure.value))
+//     }
+// }
 const enemy = computed(() =>
   ennemyName.value ? getCharacterByName(ennemyName.value) : null
 );
@@ -186,15 +186,15 @@ function updateHistory(fight) {
       ? 'Vous avez perdu la partie !'
       : 'Vous avez gagné la partie !'
     // Si en mode aventure et victoire, mise à jour de l'aventure
-    // if (props.mode === 'aventure' && enemyCurrHealth.value <= 0) {
-    //   window.location.href = `/adventure/lobby?playerName=${playerName}`
-    // }
     if (props.mode === 'aventure' && enemyCurrHealth.value <= 0) {
-    // Sauvegarde l'aventure dans sessionStorage
-    sessionStorage.setItem('adventure', JSON.stringify(adventure.value))
+      window.location.href = `/adventure/lobby?playerName=${playerName}`
+    }
+    // if (props.mode === 'aventure' && enemyCurrHealth.value <= 0) {
+    // // Sauvegarde l'aventure dans sessionStorage
+    // sessionStorage.setItem('adventure', JSON.stringify(adventure.value))
 
     window.location.href = `/adventure/lobby?playerName=${playerName}`
-}
+// }
   }
 }
 </script>
