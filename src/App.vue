@@ -19,15 +19,15 @@
 } */
 @font-face {
     font-family: 'bastarda';
-    src: url('~@/assets/fonts/JacquardaBastarda9-Regular.ttf');
+    src: url('@/assets/fonts/JacquardaBastarda9-Regular.ttf');
 }
 @font-face {
     font-family: 'jacquard12';
-    src: url('~@/assets/fonts/Jacquard12-Regular.ttf');
+    src: url('@/assets/fonts/Jacquard12-Regular.ttf');
 }
 
 @font-face {
     font-family: 'pixelify-sans';
-    src: url('~@/assets/fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf');
+    src: url('@/assets/fonts/Pixelify_Sans/static/PixelifySans-Regular.ttf');
 }
 </style>
