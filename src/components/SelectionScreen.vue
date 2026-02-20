@@ -32,7 +32,7 @@
             <p class="text-center italic text-2xl text-stone-500 pb-6 pixelify-sans">Je choisis 
                 <span class="text-stone-950 dark:text-stone-100 font-bold">{{ playerName }} !</span>
             </p>
-            <CommonButton class="w-full md:w-1/4" id="start-game" label="Commencer à jouer !" :action="{ path: '/fight', query: { playerName, mode: props.mode } }"/>
+            <CommonButton class="w-full md:w-1/4" data-cy="start-game" label="Commencer à jouer !" :action="{ path: '/fight', query: { playerName, mode: props.mode } }"/>
         </div>
         <div v-if="playerBiography" class="w-full flex flex-col text-shadow-special items-center mt-8 px-4">
             <p class="text-center text-stone-900 dark:text-stone-100 text-lg md:text-4xl w-full md:w-1/2 font-bold jacquard12 md:py-4">"{{ playerBiography }}"</p>

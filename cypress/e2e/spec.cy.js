@@ -12,7 +12,11 @@ describe('début de partie',()=>{
     cy.get(':nth-child(2) > .py-2').should('contain', 'Partie simple')
     cy.get(':nth-child(2) > .italic').should('contain', 'Sélectionnez votre pirate :')
     cy.get('#Barbe-blonde').click()
-    cy.get('#start-game').click()
+    cy.getByCy('start-game').click()
+    // dans support/commands.js : 
+    //  Cypress.Commands.add('getByCy', (value) => {
+    // return cy.get(`[data-cy=${value}]`)
+    // })
     cy.get('.mb-4 > :nth-child(1) > .font-semibold').should('contain', 'Choisissez votre action :')
   })
 })
