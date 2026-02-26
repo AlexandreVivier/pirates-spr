@@ -100,6 +100,15 @@ function nextFight() {
             Boutique de l'aventurier
         </p>
 
+        <!-- <div>
+            Victory shop :
++1 coeur (coût courant)
+Rum (1 po)
+Cache oeil (5po - bloque l'ennemi sur 1 seule attaque)
+Longue vue (3po preshot la prochaine attaque)
+Crochet ( 2po gains *2 )
+        </div> -->
+
         <p class="bastarda text-xl">
             Pièces d'or : {{ adventure?.wealth ?? 0 }}
         </p>
